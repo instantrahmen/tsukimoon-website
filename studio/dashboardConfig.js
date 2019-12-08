@@ -1,12 +1,12 @@
 export default {
   widgets: [
-    {
-      name: 'sanity-tutorials',
-      options: {
-        templateRepoId: 'sanity-io/sanity-template-gatsby-blog'
-      }
-    },
-    {name: 'structure-menu'},
+    // {
+    //   name: 'sanity-tutorials',
+    //   options: {
+    //     templateRepoId: 'sanity-io/sanity-template-gatsby-blog'
+    //   }
+    // },
+    { name: 'structure-menu' },
     {
       name: 'project-info',
       options: {
@@ -39,15 +39,15 @@ export default {
             value: 'https://github.com/instantrahmen/tsukimoon-website',
             category: 'Code'
           },
-          {title: 'Frontend', value: 'https://tsukimoon-website.netlify.com', category: 'apps'}
+          { title: 'Frontend', value: 'https://tsukimoon-website.netlify.com', category: 'apps' }
         ]
       }
     },
-    {name: 'project-users', layout: {height: 'auto'}},
+    { name: 'project-users', layout: { height: 'auto' } },
     {
       name: 'document-list',
-      options: {title: 'Recent blog posts', order: '_createdAt desc', types: ['post']},
-      layout: {width: 'medium'}
+      options: { title: 'Recent blog posts', order: '_createdAt desc', types: ['post'] },
+      layout: { width: 'medium' }
     }
   ]
-}
+};
