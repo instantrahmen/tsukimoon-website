@@ -1,14 +1,14 @@
 export default {
   name: 'authorReference',
   type: 'object',
-  title: 'Author reference',
+  title: 'Family member reference',
   fields: [
     {
       name: 'author',
       type: 'reference',
       to: [
         {
-          type: 'author'
+          type: 'familyMember'
         }
       ]
     }
@@ -19,4 +19,4 @@ export default {
       media: 'author.image.asset'
     }
   }
-}
+};

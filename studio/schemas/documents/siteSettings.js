@@ -14,40 +14,58 @@ export default {
       name: 'tagline',
       type: 'string',
       title: 'Tagline',
-      description: 'The website tagline. This will appear under the title on the home page'
+      description: 'The website tagline. This will appear under the title on the home page.'
     },
     {
       name: 'headerImages',
       title: 'Header Images',
+      description:
+        'The background images for the homepage. These will be cycled through every few seconds.',
       type: 'array',
       of: [
         {
-          type: 'image'
+          type: 'image',
+          fields: [
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+              options: {
+                isHighlighted: true // <-- make this field easily accessible
+              }
+            }
+          ]
         }
-      ]
+      ],
+      options: {
+        layout: 'grid'
+      }
     },
     {
       name: 'description',
       type: 'text',
       title: 'Description',
-      description: 'Describe your blog for search engines and social media.'
+      description: 'Describe your site for search engines and social media.'
     },
     {
       name: 'keywords',
       type: 'array',
       title: 'Keywords',
-      description: 'Add keywords that describes your blog.',
+      description: 'Add keywords that describes your site. This is useful for SEO',
       of: [{ type: 'string' }],
       options: {
         layout: 'tags'
       }
     },
     {
-      name: 'author',
-      type: 'reference',
-      description: 'Publish an author and set a reference to them here.',
-      title: 'Author',
-      to: [{ type: 'author' }]
+      name: 'socialMediaLinks',
+      type: 'array',
+      title: 'Social Media Links',
+      description: 'Put links to your social media profiles here. They will appear in the footer.',
+      of: [{ type: 'string' }],
+      options: {
+        layout: 'list'
+      }
     }
   ]
 };

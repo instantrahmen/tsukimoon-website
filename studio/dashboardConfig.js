@@ -15,11 +15,11 @@ export default {
             name: 'netlify',
             options: {
               description:
-                'NOTE: Because this site is static, it needs to be re-deployed to see the changes when anything is published. To deploy, just click',
+                'NOTE: Because this site is static, it needs to be re-deployed to see the changes when anything is published. To deploy, just click the "Deploy" button below whenever you make changes.',
               sites: [
                 {
                   buildHookId: '5de4834034b0fddef2cc9b2d',
-                  title: 'TsukiMoon Website',
+                  title: 'tsukimoon.net',
                   name: 'tsukimoon-website',
                   apiId: '3d897f26-88f6-458a-a282-d40e929e6b2f'
                 }
@@ -46,7 +46,7 @@ export default {
     { name: 'project-users', layout: { height: 'auto' } },
     {
       name: 'document-list',
-      options: { title: 'Recent blog posts', order: '_createdAt desc', types: ['post'] },
+      // options: { title: 'Recent blog posts', order: '_createdAt desc', types: ['post'] },
       layout: { width: 'medium' }
     }
   ]
