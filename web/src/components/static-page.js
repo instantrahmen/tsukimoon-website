@@ -40,13 +40,20 @@ export default styled(StaticPage)`
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   position: relative;
   .mainImage {
+    margin-top: -80px;
     width: 100%;
-    /* background: black; */
+    background: black;
+    position: sticky;
+    top: calc(-350px + 80px);
+    z-index: 10;
+    left: 0%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    height: 350px;
+
     img {
       width: 100%;
-      height: 250px;
+      height: 350px;
       object-fit: cover;
-      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     }
   }
   .mainContent {

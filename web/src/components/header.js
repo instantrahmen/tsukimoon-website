@@ -15,7 +15,7 @@ const Header = ({
   currentHeaderImage
 }) => (
   <div className={className}>
-    <HeaderBackground siteHeaderImages={siteHeaderImages} currentHeaderImage={currentHeaderImage} />
+    {/* <HeaderBackground siteHeaderImages={siteHeaderImages} currentHeaderImage={currentHeaderImage} /> */}
     <div className={'wrapper'}>
       <div className={'branding'}>
         <Link to="/">
