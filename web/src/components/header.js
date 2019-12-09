@@ -33,7 +33,7 @@ const Header = ({
       <nav className={cn('nav', showNav && 'showNav')}>
         <ul>
           <li>
-            <Link to="/about-me">About Tsuki</Link>
+            <Link to="/about-tsuki">About Tsuki</Link>
           </li>
           <li>
             <Link to="/">Tsuki's Family</Link>
