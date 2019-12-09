@@ -20,7 +20,6 @@ function BlogPost(props) {
                 .fit('crop')
                 .auto('format')
                 .url()}
-              alt={'alt'}
             />
           </div>
         )}

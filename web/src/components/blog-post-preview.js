@@ -19,7 +19,7 @@ function BlogPostPreview(props) {
               .height(Math.floor((9 / 16) * 600))
               .auto('format')
               .url()}
-            alt={props.mainImage.alt}
+            alt={props.mainImage.caption}
           />
         )}
       </div>
