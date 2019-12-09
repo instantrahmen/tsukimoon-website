@@ -19,6 +19,11 @@ export default {
       }
     },
     {
+      name: 'color',
+      type: 'color',
+      title: 'Favorite Color'
+    },
+    {
       name: 'image',
       type: 'mainImage',
       title: 'Image'
