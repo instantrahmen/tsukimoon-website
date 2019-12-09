@@ -12,6 +12,7 @@ module.exports = {
     'gatsby-plugin-postcss',
     `gatsby-plugin-favicon`,
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-styled-components',
     {
       resolve: 'gatsby-source-sanity',
       options: {
