@@ -8,20 +8,25 @@ export default {
   fields: [
     {
       name: 'caption',
-      type: 'string',
+      type: 'text',
       title: 'Caption',
       options: {
         isHighlighted: true
       }
     },
     {
-      name: 'alt',
-      type: 'string',
-      title: 'Alternative text',
-      description: 'Important for SEO and accessiblity.',
-      validation: Rule => Rule.error('You have to fill out the alternative text.').required(),
+      name: 'tags',
+      type: 'array',
+      title: 'Tags',
+      description: 'Tags for easy sorting',
+      of: [
+        {
+          type: 'string'
+        }
+      ],
       options: {
-        isHighlighted: true
+        isHighlighted: true,
+        layout: 'tags'
       }
     }
   ],
@@ -31,4 +36,4 @@ export default {
       title: 'caption'
     }
   }
-}
+};

@@ -30,38 +30,19 @@ export default {
     {
       name: 'photos',
       title: 'Photos',
+      type: 'array',
       description:
         'If you have a lot to add, you can drag them from your file manager. Click on any photo to edit its caption',
-      type: 'array',
       of: [
         {
-          type: 'image',
-          fields: [
-            // {
-            //   name: 'authors',
-            //   title: 'Cuties in this photo',
-            //   type: 'array',
-            //   of: [
-            //     {
-            //       type: 'authorReference'
-            //     }
-            //   ]
-            // },
-            {
-              name: 'caption',
-              type: 'string',
-              title: 'Caption',
-              options: {
-                isHighlighted: true // <-- make this field easily accessible
-              }
-            }
-          ]
+          type: 'mainImage'
         }
       ],
       options: {
         layout: 'grid'
       }
     },
+
     {
       name: 'description',
       type: 'bodyPortableText',
