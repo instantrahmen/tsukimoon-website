@@ -7,7 +7,14 @@ export default {
     {
       name: 'title',
       type: 'string',
-      title: 'Title'
+      title: 'Title',
+      description: 'What is the name of your website?'
+    },
+    {
+      name: 'tagline',
+      type: 'string',
+      title: 'Tagline',
+      description: 'The website tagline. This will appear under the title on the home page'
     },
     {
       name: 'headerImages',
@@ -43,4 +50,4 @@ export default {
       to: [{ type: 'author' }]
     }
   ]
-}
+};
