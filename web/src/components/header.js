@@ -36,7 +36,7 @@ const Header = ({
             <Link to="/about-tsuki">About Tsuki</Link>
           </li>
           <li>
-            <Link to="/">Tsuki's Family</Link>
+            <Link to="/family">Tsuki's Family</Link>
           </li>
           <li>
             <Link to="/">Daily Photos</Link>

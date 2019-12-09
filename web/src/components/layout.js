@@ -1,3 +1,4 @@
+import './global.css';
 import React from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
 import Header from './header';
@@ -47,7 +48,6 @@ const Layout = ({
 );
 
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css?family=Baloo|Roboto&display=swap');
 body {
   width: 100vw;
   max-width: 100%;
@@ -93,10 +93,6 @@ footer {
   flex-direction: row;
   width: 100%;
   justify-content: space-between;
-
-  .site-info {
-    
-  }
 
   .attribution {
 
