@@ -1,17 +1,18 @@
-import React from "react";
-import { graphql } from "gatsby";
-import styled from "styled-components";
+import React from 'react';
+import { graphql } from 'gatsby';
+import styled from 'styled-components';
 
 import {
   mapEdgesToNodes,
   filterOutDocsWithoutSlugs,
   filterOutDocsPublishedInTheFuture
-} from "../lib/helpers";
-import BlogPostPreviewList from "../components/blog-post-preview-list";
-import Container from "../components/container";
-import GraphQLErrorList from "../components/graphql-error-list";
-import SEO from "../components/seo";
-import Layout from "../containers/layout";
+} from '../lib/helpers';
+import icon from '../favicon.png';
+
+import BlogPostPreviewList from '../components/blog-post-preview-list';
+import GraphQLErrorList from '../components/graphql-error-list';
+import SEO from '../components/seo';
+import Layout from '../containers/layout';
 
 export const query = graphql`
   fragment SanityImage on SanityMainImage {
@@ -41,25 +42,10 @@ export const query = graphql`
       title
       description
       keywords
-    }
-    posts: allSanityPost(
-      limit: 6
-      sort: { fields: [publishedAt], order: DESC }
-      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
-    ) {
-      edges {
-        node {
-          id
-          publishedAt
-          mainImage {
-            ...SanityImage
-            alt
-          }
-          title
-          _rawExcerpt
-          slug {
-            current
-          }
+      tagline
+      headerImages {
+        asset {
+          url
         }
       }
     }
@@ -91,20 +77,67 @@ const IndexPage = props => {
   }
 
   return (
-    <Layout>
+    <HeaderGallery showBackgroundImage={true}>
       <SEO title={site.title} description={site.description} keywords={site.keywords} />
-      <Container>
-        <h1 hidden>Welcome to {site.title}</h1>
-        {postNodes && (
-          <BlogPostPreviewList
-            title="Latest blog posts"
-            nodes={postNodes}
-            browseMoreHref="/archive/"
-          />
-        )}
-      </Container>
-    </Layout>
+
+      <div className="header-text">
+        <div className="title">
+          <img src={icon} alt="" className="brand-image" style={{ width: 256 }} />
+          <h1>{site.title}</h1>
+          <h2>{site.tagline}</h2>
+        </div>
+      </div>
+    </HeaderGallery>
   );
 };
+
+const HeaderGallery = styled(Layout)`
+  max-width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  .header-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-family: 'Baloo Bhai', cursive;
+
+    .title {
+      margin-top: -100px;
+    }
+    h1 {
+      color: #fff;
+      font-size: 5rem;
+    }
+    h1,
+    h2 {
+      margin: 0;
+      padding: 0;
+      text-shadow: 0px 0px 7px #000a;
+    }
+  }
+  .background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+  }
+
+  .brand-image {
+    filter: drop-shadow(0px 0px 7px #000a);
+    border-radius: 200px;
+  }
+`;
 
 export default IndexPage;
