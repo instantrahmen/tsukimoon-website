@@ -6,11 +6,12 @@ import { Link } from 'gatsby';
 import PortableText from './portableText';
 import SocialMediaLink from './social-media-link';
 
-const FamilyList = ({ items }) => {
+const FamilyList = ({ items, siteSettings }) => {
+  console.log({ siteSettings, items });
   return (
     <FamilyGrid>
       {items.map(cutie => (
-        <li className={'familyMember'}>
+        <li className={'familyMember'} key={cutie.id}>
           <CutieHeader className="cutieHeader" color={rgba(cutie.color.rgb)}>
             <div className={'avatar'}>
               {cutie && cutie.image && cutie.image.asset && (
@@ -37,7 +38,7 @@ const FamilyList = ({ items }) => {
               <span className="title">Links</span>
               <ul>
                 {cutie.socialMediaLinks.map(url => (
-                  <li>
+                  <li key={`${cutie.id}/${url}`}>
                     <SocialMediaLink url={url} />
                   </li>
                 ))}
@@ -58,9 +59,10 @@ const FamilyGrid = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   list-style: none;
-  margin: 3rem;
+  margin: 3rem auto;
   padding: 0;
-  /* grid-gap: 30px; */
+  max-width: 1600px;
+  grid-gap: 1rem;
   li.familyMember {
     background: #f3f3f3;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

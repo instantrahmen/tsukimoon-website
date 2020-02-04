@@ -32,6 +32,12 @@ export default {
       }
     },
     {
+      name: 'familyCoverPhoto',
+      title: 'Family Page Cover Photo',
+      description: 'The cover photo for the family page.',
+      type: 'image'
+    },
+    {
       name: 'description',
       type: 'text',
       title: 'Description',

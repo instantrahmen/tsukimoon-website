@@ -10,6 +10,17 @@ import Layout from '../containers/layout';
 
 export const query = graphql`
   query FamilyePageQuery {
+    site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+      title
+      description
+      keywords
+      tagline
+      headerImages {
+        asset {
+          url
+        }
+      }
+    }
     familyMembers: allSanityFamilyMember(filter: {}) {
       edges {
         node {
@@ -57,13 +68,16 @@ const FamilyPage = props => {
   }
 
   const familyNodes = data && data.familyMembers && mapEdgesToNodes(data.familyMembers);
+  const siteSettings = data.site;
 
   return (
     <Layout>
       <SEO title="Tsuki's Family" />
       <Container>
         <H1>Tsuki's Family</H1>
-        {familyNodes && familyNodes.length > 0 && <FamilyList items={familyNodes} />}
+        {familyNodes && familyNodes.length > 0 && (
+          <FamilyList items={familyNodes} siteSettings={siteSettings} />
+        )}
       </Container>
     </Layout>
   );

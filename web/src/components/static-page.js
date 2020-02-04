@@ -36,20 +36,26 @@ const StaticPage = ({ className, ...props }) => {
 export default styled(StaticPage)`
   max-width: 100%;
   margin: 0 auto;
-  background: #fcfcfc;
+  /* background: #8c8; */
+  /* color: white; */
+  background-color: #68bd5e;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232ea12e' fill-opacity='0.32' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+  /* background-attachment: fixed; */
+  background-position: center;
   position: relative;
   .mainImage {
-    margin-top: -80px;
+    margin-top: -79px;
     width: 100%;
     background: black;
     position: sticky;
-    top: calc(-350px + 80px);
+    top: calc(-350px + 79px);
     z-index: 10;
     left: 0%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
     height: 350px;
-
+    border-bottom: 1px solid #1a1;
     img {
       width: 100%;
       height: 350px;
@@ -57,15 +63,27 @@ export default styled(StaticPage)`
     }
   }
   .mainContent {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 1rem;
+    padding: 2rem;
+    box-sizing: border-box;
     font-size: 1.2rem;
+    background: #fff;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin: 0.5rem 0;
+    }
     h1 {
-      font-size: 2.3rem;
+      font-size: 2.5rem;
+      margin: 1rem;
     }
     h2 {
-      font-size: 2rem;
+      font-size: 2.3rem;
     }
     h3 {
       font-size: 1.5rem;

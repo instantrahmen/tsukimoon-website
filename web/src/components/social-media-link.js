@@ -4,6 +4,8 @@ import FacebookIcon from 'react-icons/lib/fa/facebook-official';
 import TwitterIcon from 'react-icons/lib/fa/twitter';
 import TwitchIcon from 'react-icons/lib/fa/twitch';
 import YoutubeIcon from 'react-icons/lib/fa/youtube';
+import DAIcon from 'react-icons/lib/fa/deviantart';
+import LinkIcon from 'react-icons/lib/fa/external-link-square';
 
 const SocialMediaLink = ({ url, ...props }) => {
   return (
@@ -28,5 +30,7 @@ export const SocialMediaIcon = ({ websiteName, ...props }) => {
   if (websiteName === 'twitch') return <TwitchIcon {...props} />;
   if (websiteName === 'youtube') return <YoutubeIcon {...props} />;
   if (websiteName === 'github') return <GithubIcon {...props} />;
+  if (websiteName === 'deviantart') return <DAIcon {...props} />;
+  return <LinkIcon {...props} />;
 };
 export default SocialMediaLink;
