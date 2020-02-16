@@ -112,7 +112,7 @@ const PageContainer = styled.div`
     box-sizing: border-box;
     max-width: 1600px;
     width: 100%;
-    background: #f6f6f6;
+    background: #efefef;
     margin: 0 auto;
     padding: 0 2rem 2rem 2rem;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);

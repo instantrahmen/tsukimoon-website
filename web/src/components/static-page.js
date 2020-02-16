@@ -68,8 +68,12 @@ export default styled(StaticPage)`
     box-sizing: border-box;
     font-size: 1.2rem;
     line-height: 1.5em;
-    background: #fff;
+    background: #efefef;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    @media (max-width: 700px) {
+      padding: 1rem;
+    }
+
     & > * {
       /* max-width: 1000px; */
       margin: 0 2rem;

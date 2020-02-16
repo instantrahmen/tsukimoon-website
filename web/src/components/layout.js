@@ -48,6 +48,19 @@ const Layout = ({
 );
 
 const GlobalStyle = createGlobalStyle`
+
+::-webkit-scrollbar {
+  width: .6rem;
+  position: fixed;
+  background: #fff3;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.16), inset 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+ 
+::-webkit-scrollbar-thumb {
+  border-radius: 3rem;
+  background: #66aa77;
+}
+
 body {
   width: 100vw;
   max-width: 100%;
@@ -56,7 +69,7 @@ body {
   font-family: 'roboto';
   color: #121212;
   min-height: 100vh;
-
+  overflow: overlay;
 }
 
 a {
@@ -65,6 +78,11 @@ a {
 
 .rahmenLink {
   color: #00aaff;
+
+  a:focus {
+    outline: none;
+    text-decoration: underline;
+  }
 }
 h1, h2, h3, h4, h5 {
   font-family: 'baloo';
@@ -73,7 +91,7 @@ h1, h2, h3, h4, h5 {
 footer {
   background: #000c;
   box-sizing: border-box;
-  padding: 0px 10px 0px 10px;
+  padding: 0px 2rem 0px 2rem;
   align-items: center;
 
   a {
@@ -107,13 +125,18 @@ footer {
     li {
       margin-left: 10px;
     }
+
     a:hover {
       color: #15ff30;
     }
+    
+    a:focus {
+      outline: none;
+      color: #15ff6d;
+      text-decoration: underline;
+    }
   }
-
 }
-
 `;
 export default styled(Layout)`
   display: flex;
