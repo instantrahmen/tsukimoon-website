@@ -8,9 +8,10 @@ import DAIcon from 'react-icons/lib/fa/deviantart';
 import LinkIcon from 'react-icons/lib/fa/external-link-square';
 
 const SocialMediaLink = ({ url, ...props }) => {
+  const finalUrl = url.startsWith('http') ? url : `https://${url}`;
   return (
-    <a href={url} {...props}>
-      <SocialMediaIcon websiteName={extractWebsiteName(url)} />
+    <a href={finalUrl} {...props}>
+      <SocialMediaIcon websiteName={extractWebsiteName(finalUrl)} />
     </a>
   );
 };
@@ -21,6 +22,7 @@ export const extractWebsiteName = url => {
   if (url.includes('github.com')) return 'github';
   if (url.includes('youtube.com')) return 'youtube';
   if (url.includes('twitch.tv')) return 'twitch';
+  if (url.includes('deviantart.com')) return 'deviantart';
   return url;
 };
 
