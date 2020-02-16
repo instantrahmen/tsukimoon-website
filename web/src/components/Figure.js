@@ -8,7 +8,6 @@ export default ({ node }) => {
     return null;
   }
   const fluidProps = getFluidGatsbyImage(node.asset._id, { maxWidth: 10000 }, clientConfig.sanity);
-  console.log({ fluidProps });
   return (
     <figure>
       <Img fluid={fluidProps} alt={node.alt} />

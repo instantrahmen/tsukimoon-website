@@ -21,7 +21,6 @@ const Layout = ({
 }) => {
   const headerImage = siteHeaderImages[currentHeaderImage];
 
-  console.log({ headerImage });
   return (
     <>
       <GlobalStyle />
@@ -67,6 +66,7 @@ const Layout = ({
 const HeaderImage = ({ siteHeaderImages, currentHeaderImage }) => {
   return siteHeaderImages.map((currentImage, index) => (
     <Img
+      key={`background-image-${siteHeaderImages[index].asset._id}`}
       fluid={getFluidGatsbyImage(
         siteHeaderImages[index].asset._id,
         { maxWidth: 3840 },
@@ -100,6 +100,8 @@ body {
   color: #121212;
   min-height: 100vh;
   overflow: overlay;
+  background-color: #68bd5e;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232ea12e' fill-opacity='0.32' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 a {
@@ -171,15 +173,9 @@ export default styled(Layout)`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* background: black; */
-  /* background: ${({ siteHeaderImages, currentHeaderImage = 0 }) => {
-    console.log({ siteHeaderImages, currentHeaderImage });
-    return `url(${siteHeaderImages[currentHeaderImage].asset.url}) no-repeat center center fixed`;
-  }}; */
 
-  background-size: cover;
   position: relative;
-
+  background: none;
   .content {
     background: rgb(0, 0, 0);
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%);

@@ -154,7 +154,7 @@ const HeaderGallery = styled(Layout)`
     object-fit: cover;
     /* opacity: 0.3; */
     z-index: -1;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 2s ease-out;
     &.active-image {
       opacity: 1;
     }

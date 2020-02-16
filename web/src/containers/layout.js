@@ -23,9 +23,7 @@ function LayoutContainer(props) {
   function handleHideNav() {
     setShowNav(false);
   }
-  console.log({ props });
 
-  console.log({ currentHeaderImage });
   return (
     <StaticQuery
       query={query}
@@ -38,12 +36,8 @@ function LayoutContainer(props) {
 
         const nextHeaderImage = (amount = 1) => {
           if (amount < 0) {
-            console.log(2);
             return setCurrentHeaderImage(data.site.headerImages.length - 1);
           }
-
-          console.log(1);
-          console.log({ currentHeaderImage, new: currentHeaderImage + amount });
 
           setCurrentHeaderImage(prevImage => {
             const newImage = prevImage + amount;
@@ -58,7 +52,6 @@ function LayoutContainer(props) {
         useEffect(() => {
           if (!window) return;
           const headerInterval = setInterval(() => {
-            console.log('nextHeaderImage');
             nextHeaderImage(1);
           }, 10000);
 
@@ -66,10 +59,6 @@ function LayoutContainer(props) {
             clearInterval(headerInterval);
           };
         }, []);
-
-        useEffect(() => {
-          console.log({ currentHeaderImage });
-        }, [currentHeaderImage]);
 
         return (
           <Layout

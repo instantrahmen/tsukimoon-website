@@ -7,7 +7,6 @@ import PortableText from './portableText';
 import SocialMediaLink from './social-media-link';
 
 const FamilyList = ({ items, siteSettings }) => {
-  console.log({ siteSettings, items });
   return (
     <FamilyGrid>
       {items.map(cutie => (

@@ -9,7 +9,6 @@ import Container from './container';
 
 const StaticPage = ({ className, ...props }) => {
   const { _rawBody, title, mainImage } = props;
-  console.log({ _rawBody });
   return (
     <Container>
       <article className={className}>
@@ -36,10 +35,10 @@ export default styled(StaticPage)`
   margin: 0 auto;
   /* background: #8c8; */
   /* color: white; */
-  background-color: #68bd5e;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232ea12e' fill-opacity='0.32' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
+  /* background-color: #68bd5e;
+  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232ea12e' fill-opacity='0.32' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E"); */
   /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
-
+  background: none;
   /* background-attachment: fixed; */
   background-position: center;
   position: relative;
