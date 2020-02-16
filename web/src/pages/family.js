@@ -115,6 +115,7 @@ const PageContainer = styled.div`
     background: #f6f6f6;
     margin: 0 auto;
     padding: 0 2rem 2rem 2rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   }
   .mainImage {
     margin-top: -79px;
