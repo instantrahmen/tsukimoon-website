@@ -93,6 +93,7 @@ export default styled(Header)`
     }
   }
   .toggleNavButton {
+    display: flex;
     @media (min-width: 700px) {
       display: none;
     }
