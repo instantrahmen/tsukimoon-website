@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { graphql } from 'gatsby';
 import styled from 'styled-components';
 
@@ -15,7 +15,7 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 
 export const query = graphql`
-  fragment SanityImagFragment on SanityImage {
+  fragment SanityImageFragment on SanityImage {
     crop {
       _key
       _type
@@ -65,9 +65,7 @@ export const query = graphql`
       keywords
       tagline
       headerImages {
-        asset {
-          url
-        }
+        ...SanityImageFragment
       }
     }
   }
@@ -149,10 +147,17 @@ const HeaderGallery = styled(Layout)`
     }
   }
   .background-image {
+    position: absolute !important;
+    opacity: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    opacity: 0.3;
+    /* opacity: 0.3; */
+    z-index: -1;
+    transition: opacity 1s ease-in-out;
+    &.active-image {
+      opacity: 1;
+    }
   }
 
   .brand-image {

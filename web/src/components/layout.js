@@ -1,7 +1,10 @@
 import './global.css';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import Img from 'gatsby-image';
+import { getFluidGatsbyImage } from 'gatsby-source-sanity';
 import Header from './header';
+import clientConfig from '../../client-config';
 
 const Layout = ({
   className,
@@ -11,41 +14,68 @@ const Layout = ({
   showNav,
   siteTitle,
   nextHeaderImage,
+  siteHeaderImages,
+  currentHeaderImage,
+  showBackgroundImage = false,
   ...otherProps
-}) => (
-  <>
-    <GlobalStyle />
-    <div className={className}>
-      <Header
-        siteTitle={siteTitle}
-        onHideNav={onHideNav}
-        onShowNav={onShowNav}
-        showNav={showNav}
-        {...otherProps}
-      />
-      <div className="content">{children}</div>
-      <footer className="footer">
-        <div className="footer-wrapper">
-          <div className="site-info">&copy; Tsukimoon {new Date().getFullYear()}</div>
-          <div className="attribution">
-            Website built and designed by{' '}
-            <a className={'rahmenLink'} href="https://twitter.com/myrahmen">
-              instantRahmen
-            </a>
+}) => {
+  const headerImage = siteHeaderImages[currentHeaderImage];
+
+  console.log({ headerImage });
+  return (
+    <>
+      <GlobalStyle />
+      <div className={className}>
+        {showBackgroundImage && (
+          <HeaderImage
+            siteHeaderImages={siteHeaderImages}
+            currentHeaderImage={currentHeaderImage}
+          />
+        )}
+        <Header
+          siteTitle={siteTitle}
+          onHideNav={onHideNav}
+          onShowNav={onShowNav}
+          showNav={showNav}
+          {...otherProps}
+        />
+        <div className="content">{children}</div>
+        <footer className="footer">
+          <div className="footer-wrapper">
+            <div className="site-info">&copy; Tsukimoon {new Date().getFullYear()}</div>
+            <div className="attribution">
+              Website built and designed by{' '}
+              <a className={'rahmenLink'} href="https://twitter.com/myrahmen">
+                instantRahmen
+              </a>
+            </div>
+            <ul className="social-media-links">
+              <li>
+                <a href="https://twitter.com/TsukimoonVR">Twitter</a>
+              </li>
+              <li>
+                <a href="https://twitch.tv/TsukimoonVR">Twitch</a>
+              </li>
+            </ul>
           </div>
-          <ul className="social-media-links">
-            <li>
-              <a href="https://twitter.com/TsukimoonVR">Twitter</a>
-            </li>
-            <li>
-              <a href="https://twitch.tv/TsukimoonVR">Twitch</a>
-            </li>
-          </ul>
-        </div>
-      </footer>
-    </div>
-  </>
-);
+        </footer>
+      </div>
+    </>
+  );
+};
+
+const HeaderImage = ({ siteHeaderImages, currentHeaderImage }) => {
+  return siteHeaderImages.map((currentImage, index) => (
+    <Img
+      fluid={getFluidGatsbyImage(
+        siteHeaderImages[index].asset._id,
+        { maxWidth: 3840 },
+        clientConfig.sanity
+      )}
+      className={`background-image ${index === currentHeaderImage && 'active-image'}`}
+    />
+  ));
+};
 
 const GlobalStyle = createGlobalStyle`
 
@@ -113,7 +143,6 @@ footer {
   justify-content: space-between;
 
   .attribution {
-
     font-size: .9rem;
   }
 
@@ -142,9 +171,11 @@ export default styled(Layout)`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
-  background: ${({ siteHeaderImages }) =>
-    `url(${siteHeaderImages[0].asset.url}) no-repeat center center fixed`};
+  /* background: black; */
+  /* background: ${({ siteHeaderImages, currentHeaderImage = 0 }) => {
+    console.log({ siteHeaderImages, currentHeaderImage });
+    return `url(${siteHeaderImages[currentHeaderImage].asset.url}) no-repeat center center fixed`;
+  }}; */
 
   background-size: cover;
   position: relative;

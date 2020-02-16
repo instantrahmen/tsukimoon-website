@@ -18,12 +18,10 @@ export const query = graphql`
       keywords
       tagline
       familyCoverPhoto {
-        ...SanityImagFragment
+        ...SanityImageFragment
       }
       headerImages {
-        asset {
-          url
-        }
+        ...SanityImageFragment
       }
     }
     familyMembers: allSanityFamilyMember(filter: {}) {
