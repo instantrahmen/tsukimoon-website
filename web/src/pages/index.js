@@ -15,6 +15,27 @@ import SEO from '../components/seo';
 import Layout from '../containers/layout';
 
 export const query = graphql`
+  fragment SanityImagFragment on SanityImage {
+    crop {
+      _key
+      _type
+      top
+      bottom
+      left
+      right
+    }
+    hotspot {
+      _key
+      _type
+      x
+      y
+      height
+      width
+    }
+    asset {
+      _id
+    }
+  }
   fragment SanityImage on SanityMainImage {
     crop {
       _key

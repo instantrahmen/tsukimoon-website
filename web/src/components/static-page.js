@@ -9,6 +9,7 @@ import Container from './container';
 
 const StaticPage = ({ className, ...props }) => {
   const { _rawBody, title, mainImage } = props;
+  console.log({ _rawBody });
   return (
     <Container>
       <article className={className}>
@@ -16,18 +17,15 @@ const StaticPage = ({ className, ...props }) => {
           <div className={'mainImage'}>
             <img
               src={imageUrlFor(buildImageObj(mainImage))
-                .width(1200)
-                .height(Math.floor((9 / 16) * 1200))
+                .width(1920)
+                .height(Math.floor((9 / 16) * 1920))
                 .fit('crop')
                 .auto('format')
                 .url()}
             />
           </div>
         )}
-        <div className={'mainContent'}>
-          {/* <h1 className={'title'}>{title}</h1> */}
-          {_rawBody && <PortableText blocks={_rawBody} />}
-        </div>
+        <div className={'mainContent'}>{_rawBody && <PortableText blocks={_rawBody} />}</div>
       </article>
     </Container>
   );
@@ -40,7 +38,7 @@ export default styled(StaticPage)`
   /* color: white; */
   background-color: #68bd5e;
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232ea12e' fill-opacity='0.32' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
 
   /* background-attachment: fixed; */
   background-position: center;
@@ -50,37 +48,44 @@ export default styled(StaticPage)`
     width: 100%;
     background: black;
     position: sticky;
-    top: calc(-350px + 79px);
+    top: calc(-500px + 79px);
     z-index: 10;
     left: 0%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    height: 350px;
+    height: 500px;
     border-bottom: 1px solid #1a1;
+    display: flex;
     img {
       width: 100%;
-      height: 350px;
+      height: 500px;
       object-fit: cover;
     }
   }
   .mainContent {
-    max-width: 1400px;
+    max-width: 1600px;
     margin: 0 auto;
     padding: 2rem;
     box-sizing: border-box;
     font-size: 1.2rem;
+    line-height: 1.5em;
     background: #fff;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-
+    & > * {
+      /* max-width: 1000px; */
+      margin: 0 2rem;
+    }
     h1,
     h2,
     h3,
     h4,
     h5 {
       margin: 0.5rem 0;
+      text-align: center;
+      line-height: 3rem;
     }
     h1 {
       font-size: 2.5rem;
-      margin: 1rem;
+      margin: 2rem;
     }
     h2 {
       font-size: 2.3rem;

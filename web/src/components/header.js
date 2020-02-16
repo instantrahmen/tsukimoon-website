@@ -38,9 +38,9 @@ const Header = ({
           <li>
             <Link to="/family">Tsuki's Family</Link>
           </li>
-          <li>
-            <Link to="/">Daily Photos</Link>
-          </li>
+          {/* <li>
+            <Link to="/">Weekly Photos</Link>
+          </li> */}
           {/* <li>
             <Link to="/">Archive</Link>
           </li> */}
