@@ -19,8 +19,6 @@ const Layout = ({
   showBackgroundImage = false,
   ...otherProps
 }) => {
-  const headerImage = siteHeaderImages[currentHeaderImage];
-
   return (
     <>
       <GlobalStyle />
@@ -42,7 +40,7 @@ const Layout = ({
         <footer className="footer">
           <div className="footer-wrapper">
             <div className="site-info">&copy; Tsukimoon {new Date().getFullYear()}</div>
-            <div className="attribution">
+            <div className="attribution only-large-screen">
               Website built and designed by{' '}
               <a className={'rahmenLink'} href="https://twitter.com/myrahmen">
                 instantRahmen
@@ -56,6 +54,12 @@ const Layout = ({
                 <a href="https://twitch.tv/TsukimoonVR">Twitch</a>
               </li>
             </ul>
+            <div className="attribution only-small-screen">
+              Website built and designed by{' '}
+              <a className={'rahmenLink'} href="https://twitter.com/myrahmen">
+                instantRahmen
+              </a>
+            </div>
           </div>
         </footer>
       </div>
@@ -78,7 +82,6 @@ const HeaderImage = ({ siteHeaderImages, currentHeaderImage }) => {
 };
 
 const GlobalStyle = createGlobalStyle`
-
 ::-webkit-scrollbar {
   width: .6rem;
   position: fixed;
@@ -94,12 +97,13 @@ const GlobalStyle = createGlobalStyle`
 body {
   width: 100vw;
   max-width: 100%;
+  overflow: hidden;
+  overflow-y: overlay;
   margin: 0;
   padding: 0;
   font-family: 'roboto';
   color: #121212;
   min-height: 100vh;
-  overflow: overlay;
   background-color: #68bd5e;
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232ea12e' fill-opacity='0.32' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
 }
@@ -135,7 +139,7 @@ footer {
 .footer-wrapper {
   box-sizing: border-box;
   align-items: center;
-  margin: 0 auto;
+  margin: 1rem auto;
   max-width: 9600px;
   width: 100vw;
   color: white;
@@ -146,6 +150,26 @@ footer {
 
   .attribution {
     font-size: .9rem;
+    
+    @media (max-width: 700px) {
+      &.only-small-screen {
+        display: auto;
+      }
+
+      &.only-large-screen {
+        display: none;
+      }
+    }
+
+    @media (min-width: 701px) {
+      &.only-small-screen {
+        display: none;
+      }
+
+      &.only-large-screen {
+        display: auto;
+      }
+    }
   }
 
   .social-media-links {
@@ -153,6 +177,8 @@ footer {
     list-style: none;
     display: flex;
     flex-direction: row;
+    margin: 0;
+    padding: 0;
     li {
       margin-left: 10px;
     }
@@ -165,6 +191,29 @@ footer {
       outline: none;
       color: #15ff6d;
       text-decoration: underline;
+    }
+  }
+
+  @media (max-width: 700px) {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    text-align: center;
+
+    & > * {
+      margin-top: 1rem;
+    }
+
+    .social-media-links {
+      text-align: center;
+      justify-content: center;
+      margin-top: 1rem;
+
+    }
+
+    .attribution {
+      flex-basis: 100%;
+      width: 100%;
     }
   }
 }

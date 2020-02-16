@@ -91,7 +91,7 @@ const FamilyPage = props => {
               />
             </div>
           )}
-          <div class="family-page-content">
+          <div className="family-page-content">
             <H1>Tsuki's Family</H1>
             {familyNodes && familyNodes.length > 0 && (
               <FamilyList items={familyNodes} siteSettings={siteSettings} />

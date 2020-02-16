@@ -72,6 +72,10 @@ export default styled(Header)`
     padding: 0.5rem 2rem 0.5rem 2rem;
     box-sizing: border-box;
     flex-wrap: wrap;
+
+    @media (max-width: 700px) {
+      padding: 0.5rem 1rem 0.5rem 1rem;
+    }
   }
 
   a {
@@ -156,24 +160,11 @@ export default styled(Header)`
 
 const Logo = styled.img`
   margin-right: 1rem;
-  /* position: fixed; */
-  width: 64px;
+  width: 4rem;
   transform-origin: center center;
   filter: drop-shadow(0px 0px 7px #000a);
-`;
 
-const HeaderBackground = styled.div`
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
-  z-index: -100;
-  background: ${({ siteHeaderImages }) =>
-    `url(${siteHeaderImages[0].asset.url}) no-repeat center center fixed`};
-
-  background-size: cover;
-  top: 0;
-  left: 0;
+  @media (max-width: 700px) {
+    width: 3rem;
+  }
 `;

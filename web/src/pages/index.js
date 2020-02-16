@@ -134,10 +134,20 @@ const HeaderGallery = styled(Layout)`
 
     .title {
       margin-top: -100px;
+
+      &:hover {
+        text-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        color: #15ff6d;
+      }
     }
+
     h1 {
       color: #fff;
       font-size: 5rem;
+
+      @media (max-width: 700px) {
+        font-size: 3rem;
+      }
     }
     h1,
     h2 {
@@ -152,7 +162,6 @@ const HeaderGallery = styled(Layout)`
     width: 100%;
     height: 100%;
     object-fit: cover;
-    /* opacity: 0.3; */
     z-index: -1;
     transition: opacity 2s ease-out;
     &.active-image {
