@@ -53,6 +53,7 @@ export const query = graphql`
             current
           }
           socialMediaLinks
+          sortIndex
         }
       }
     }
@@ -82,14 +83,6 @@ const FamilyPage = props => {
           {familyCoverPhoto && familyCoverPhoto.asset && (
             <div className={'mainImage'}>
               <Figure maxWidth={1920} node={familyCoverPhoto} noCaption className="img-container" />
-              {/* <img
-                src={imageUrlFor(buildImageObj(familyCoverPhoto))
-                  .width(1920)
-                  .height(1080)
-                  .fit('crop')
-                  .auto('format')
-                  .url()}
-              /> */}
             </div>
           )}
           <div className="family-page-content">

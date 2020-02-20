@@ -6,11 +6,13 @@ import { Link } from 'gatsby';
 import PortableText from './portableText';
 import SocialMediaLink from './social-media-link';
 import Figure from './Figure';
+import { sortBy } from 'lodash';
 
 const FamilyList = ({ items, siteSettings }) => {
+  const sortedCuties = sortBy(items, 'sortIndex');
   return (
     <FamilyGrid>
-      {items.map(cutie => (
+      {sortedCuties.map(cutie => (
         <li className={'familyMember'} key={cutie.id}>
           <CutieHeader className="cutieHeader" color={rgba(cutie.color.rgb)}>
             <div className={'avatar'}>

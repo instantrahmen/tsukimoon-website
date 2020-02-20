@@ -91,7 +91,7 @@ const GlobalStyle = createGlobalStyle`
  
 ::-webkit-scrollbar-thumb {
   border-radius: 3rem;
-  background: #66aa77;
+  background: #aaaaff;
 }
 
 body {
