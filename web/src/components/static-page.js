@@ -6,6 +6,7 @@ import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 import PortableText from './portableText';
 import Container from './container';
+import Figure from './Figure';
 
 const StaticPage = ({ className, ...props }) => {
   const { _rawBody, title, mainImage } = props;
@@ -14,14 +15,15 @@ const StaticPage = ({ className, ...props }) => {
       <article className={className}>
         {mainImage && mainImage.asset && (
           <div className={'mainImage'}>
-            <img
+            <Figure noCaption maxWidth={1920} node={mainImage} />
+            {/* <img
               src={imageUrlFor(buildImageObj(mainImage))
                 .width(1920)
                 .height(Math.floor((9 / 16) * 1920))
                 .fit('crop')
                 .auto('format')
                 .url()}
-            />
+            /> */}
           </div>
         )}
         <div className={'mainContent'}>{_rawBody && <PortableText blocks={_rawBody} />}</div>
@@ -33,13 +35,7 @@ const StaticPage = ({ className, ...props }) => {
 export default styled(StaticPage)`
   max-width: 100%;
   margin: 0 auto;
-  /* background: #8c8; */
-  /* color: white; */
-  /* background-color: #68bd5e;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232ea12e' fill-opacity='0.32' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E"); */
-  /* box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); */
   background: none;
-  /* background-attachment: fixed; */
   background-position: center;
   position: relative;
   .mainImage {
@@ -54,10 +50,16 @@ export default styled(StaticPage)`
     height: 500px;
     border-bottom: 1px solid #1a1;
     display: flex;
-    img {
+    figure {
       width: 100%;
+      margin: 0 auto;
       height: 500px;
-      object-fit: cover;
+      overflow: hidden;
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
   .mainContent {
@@ -74,7 +76,6 @@ export default styled(StaticPage)`
     }
 
     & > * {
-      /* max-width: 1000px; */
       margin: 0 2rem;
     }
     h1,
@@ -101,7 +102,7 @@ export default styled(StaticPage)`
       position: relative;
       overflow: hidden;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-      border-radius: 1rem;
+      border-radius: 0.4rem;
       max-width: 100%;
       .gatsby-image-wrapper {
         width: auto;

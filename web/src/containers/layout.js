@@ -53,7 +53,7 @@ function LayoutContainer(props) {
           if (!window) return;
           const headerInterval = setInterval(() => {
             nextHeaderImage(1);
-          }, 10000);
+          }, 5000);
 
           return () => {
             clearInterval(headerInterval);

@@ -9,7 +9,7 @@ import FamilyList from '../components/family-list';
 import Layout from '../containers/layout';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
-
+import Figure from '../components/Figure';
 export const query = graphql`
   query FamilyePageQuery {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
@@ -81,14 +81,15 @@ const FamilyPage = props => {
         <Container>
           {familyCoverPhoto && familyCoverPhoto.asset && (
             <div className={'mainImage'}>
-              <img
+              <Figure maxWidth={1920} node={familyCoverPhoto} noCaption className="img-container" />
+              {/* <img
                 src={imageUrlFor(buildImageObj(familyCoverPhoto))
                   .width(1920)
                   .height(1080)
                   .fit('crop')
                   .auto('format')
                   .url()}
-              />
+              /> */}
             </div>
           )}
           <div className="family-page-content">
@@ -128,12 +129,17 @@ const PageContainer = styled.div`
     border-bottom: 1px solid #1a1;
 
     display: flex;
-    img {
+    figure {
       width: 100%;
       /* max-width: 1600px; */
       margin: 0 auto;
       height: 500px;
-      object-fit: cover;
+      overflow: hidden;
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 `;

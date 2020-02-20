@@ -134,11 +134,6 @@ const HeaderGallery = styled(Layout)`
 
     .title {
       margin-top: -100px;
-
-      &:hover {
-        text-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-        color: #15ff6d;
-      }
     }
 
     h1 {
@@ -149,11 +144,19 @@ const HeaderGallery = styled(Layout)`
         font-size: 3rem;
       }
     }
+
     h1,
     h2 {
       margin: 0;
       padding: 0;
       text-shadow: 0px 0px 7px #000a;
+    }
+
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: bolder;
+      margin-top: -1rem;
+      margin-bottom: 2rem;
     }
   }
   .background-image {
@@ -163,7 +166,7 @@ const HeaderGallery = styled(Layout)`
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    transition: opacity 2s ease-out;
+    transition: opacity 1700ms ease-out;
     &.active-image {
       opacity: 1;
     }

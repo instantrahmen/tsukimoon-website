@@ -5,6 +5,7 @@ import { imageUrlFor } from '../lib/image-url';
 import { Link } from 'gatsby';
 import PortableText from './portableText';
 import SocialMediaLink from './social-media-link';
+import Figure from './Figure';
 
 const FamilyList = ({ items, siteSettings }) => {
   return (
@@ -14,14 +15,7 @@ const FamilyList = ({ items, siteSettings }) => {
           <CutieHeader className="cutieHeader" color={rgba(cutie.color.rgb)}>
             <div className={'avatar'}>
               {cutie && cutie.image && cutie.image.asset && (
-                <img
-                  src={imageUrlFor(buildImageObj(cutie.image))
-                    .width(100)
-                    .height(100)
-                    .fit('crop')
-                    .url()}
-                  alt=""
-                />
+                <Figure noCaption maxWidth={100} node={cutie.image} />
               )}
             </div>
             {/* <pre>{JSON.stringify(cutie, null, 2)}</pre> */}
@@ -129,9 +123,18 @@ const CutieHeader = styled.div`
   .avatar {
     padding: 1rem;
   }
-  .avatar > img {
+  .avatar figure {
     border-radius: 300px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
+    overflow: hidden;
+
+    * {
+      width: 100%;
+      height: 100%;
+    }
   }
   .name {
     background: rgba(0, 0, 0, 0.6);

@@ -101,7 +101,7 @@ body {
   overflow-y: overlay;
   margin: 0;
   padding: 0;
-  font-family: 'roboto';
+  font-family: 'Montserrat', sans-serif;
   color: #121212;
   min-height: 100vh;
   background-color: #68bd5e;
@@ -122,6 +122,7 @@ a {
 }
 h1, h2, h3, h4, h5 {
   font-family: 'baloo';
+  font-weight: 300;
 }
 
 footer {
