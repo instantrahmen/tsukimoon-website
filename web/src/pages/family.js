@@ -124,10 +124,15 @@ const PageContainer = styled.div`
     display: flex;
     figure {
       width: 100%;
-      /* max-width: 1600px; */
       margin: 0 auto;
       height: 500px;
       overflow: hidden;
+
+      .gatsby-image-wrapper {
+        width: 100%;
+        height: 100%;
+      }
+
       img {
         object-fit: cover;
         width: 100%;

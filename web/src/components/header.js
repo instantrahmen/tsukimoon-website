@@ -20,12 +20,16 @@ const Header = ({
       <div className={'wrapper'}>
         <div className={'branding'}>
           <Link to="/">
-            <Logo scale={logoScale} src={icon} />
+            <Logo alt="" scale={logoScale} src={icon} />
             {siteTitle}
           </Link>
         </div>
 
-        <button className={'toggleNavButton'} onClick={() => setNavVisible(!navVisible)}>
+        <button
+          name="Toggle Navigation"
+          className={'toggleNavButton'}
+          onClick={() => setNavVisible(!navVisible)}
+        >
           <Icon symbol="hamburger" />
         </button>
 
