@@ -77,7 +77,7 @@ export default {
   preview: {
     select: {
       title: 'name',
-      yarn: 'bio',
+      subtitle: 'bio',
       media: 'image'
     }
   }
