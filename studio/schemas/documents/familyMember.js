@@ -53,16 +53,6 @@ export default {
   ],
   orderings: [
     {
-      title: 'Name - Descending',
-      name: 'nameDesc',
-      by: [{ field: 'name', direction: 'desc' }]
-    },
-    {
-      title: 'Name - Ascending',
-      name: 'nameAsc',
-      by: [{ field: 'name', direction: 'asc' }]
-    },
-    {
       title: 'Sort Index Ascending',
       name: 'sortIndexAsc',
       by: [{ field: 'sortIndex', direction: 'asc' }]
@@ -71,6 +61,16 @@ export default {
       title: 'Sort Index Descending',
       name: 'sortIndexDesc',
       by: [{ field: 'sortIndex', direction: 'desc' }]
+    },
+    {
+      title: 'Name - Descending',
+      name: 'nameDesc',
+      by: [{ field: 'name', direction: 'desc' }]
+    },
+    {
+      title: 'Name - Ascending',
+      name: 'nameAsc',
+      by: [{ field: 'name', direction: 'asc' }]
     }
   ],
 
