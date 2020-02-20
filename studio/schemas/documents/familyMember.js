@@ -42,12 +42,42 @@ export default {
       options: {
         layout: 'list'
       }
+    },
+    {
+      name: 'sortIndex',
+      type: 'number',
+      description:
+        'The lower the number, the higher in the list it will show. Must be greater than zero. Leave blank to just use default sorting'
+      // validation: Rule => Rule.positive().interger()
     }
   ],
+  orderings: [
+    {
+      title: 'Name - Descending',
+      name: 'nameDesc',
+      by: [{ field: 'name', direction: 'desc' }]
+    },
+    {
+      title: 'Name - Ascending',
+      name: 'nameAsc',
+      by: [{ field: 'name', direction: 'asc' }]
+    },
+    {
+      title: 'Sort Index Ascending',
+      name: 'sortIndexAsc',
+      by: [{ field: 'sortIndex', direction: 'asc' }]
+    },
+    {
+      title: 'Sort Index Descending',
+      name: 'sortIndexDesc',
+      by: [{ field: 'sortIndex', direction: 'desc' }]
+    }
+  ],
+
   preview: {
     select: {
       title: 'name',
-      subtitle: 'slug.current',
+      yarn: 'bio',
       media: 'image'
     }
   }
