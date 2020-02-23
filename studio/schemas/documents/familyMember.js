@@ -36,12 +36,16 @@ export default {
     {
       name: 'bio',
       type: 'bioPortableText',
-      title: 'About (short)'
+      title: 'Short Description',
+      description:
+        'A short description of this person. WIll show on the Family Members page inside of the card, so it should be no more than a few lines long'
     },
     {
       name: 'longBio',
-      type: 'bioPortableText',
-      title: 'About (long)'
+      type: 'bodyPortableText',
+      title: 'Bio',
+      description:
+        'A longer bio/description of this nerd. It can be really long since it will show on this persons own page at tsukimoon.net/family/{family-member-slug-here}'
     },
     {
       name: 'socialMediaLinks',
