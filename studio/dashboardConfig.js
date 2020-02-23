@@ -15,7 +15,7 @@ export default {
             name: 'netlify',
             options: {
               description:
-                'NOTE: Because this site is static, it needs to be re-deployed to see the changes when anything is published. To deploy, just click the "Deploy" button below whenever you make changes.',
+                'NOTE: Because this site is static, it needs to be re-deployed to see the changes when anything is published. To deploy, just click the "Deploy" button below whenever you make changes. Also you are a cutie! 💙',
               sites: [
                 {
                   buildHookId: '5de4834034b0fddef2cc9b2d',
@@ -39,7 +39,8 @@ export default {
             value: 'https://github.com/instantrahmen/tsukimoon-website',
             category: 'Code'
           },
-          { title: 'Frontend', value: 'https://tsukimoon-website.netlify.com', category: 'apps' }
+          { title: 'Frontend', value: 'https://tsukimoon.net', category: 'apps' },
+          { title: 'Admin Panel', value: 'https://admin.tsukimoon.net', category: 'apps' }
         ]
       }
     },
