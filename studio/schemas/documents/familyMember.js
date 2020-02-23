@@ -88,6 +88,7 @@ export default {
     select: {
       title: 'name',
       subtitle: 'bio',
+      description: 'bio',
       media: 'image'
     }
   }
