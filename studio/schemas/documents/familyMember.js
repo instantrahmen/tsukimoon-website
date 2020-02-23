@@ -29,9 +29,19 @@ export default {
       title: 'Image'
     },
     {
+      name: 'coverPhoto',
+      type: 'mainImage',
+      title: 'Cover Photo'
+    },
+    {
       name: 'bio',
       type: 'bioPortableText',
-      title: 'Biography'
+      title: 'About (short)'
+    },
+    {
+      name: 'longBio',
+      type: 'bioPortableText',
+      title: 'About (long)'
     },
     {
       name: 'socialMediaLinks',
