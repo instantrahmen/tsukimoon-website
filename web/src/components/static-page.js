@@ -11,21 +11,8 @@ import Figure from './Figure';
 const StaticPage = ({ className, ...props }) => {
   const { _rawBody, title, mainImage } = props;
   return (
-    <Container>
+    <Container coverPhoto={mainImage}>
       <article className={className}>
-        {mainImage && mainImage.asset && (
-          <div className={'mainImage'}>
-            <Figure noCaption maxWidth={1920} node={mainImage} />
-            {/* <img
-              src={imageUrlFor(buildImageObj(mainImage))
-                .width(1920)
-                .height(Math.floor((9 / 16) * 1920))
-                .fit('crop')
-                .auto('format')
-                .url()}
-            /> */}
-          </div>
-        )}
         <div className={'mainContent'}>{_rawBody && <PortableText blocks={_rawBody} />}</div>
       </article>
     </Container>
@@ -38,43 +25,14 @@ export default styled(StaticPage)`
   background: none;
   background-position: center;
   position: relative;
-  .mainImage {
-    margin-top: -79px;
-    width: 100%;
-    background: black;
-    position: sticky;
-    top: calc(-500px + 79px);
-    z-index: 10;
-    left: 0%;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    height: 500px;
-    border-bottom: 1px solid #1a1;
-    display: flex;
-    figure {
-      width: 100%;
-      margin: 0 auto;
-      height: 500px;
-      overflow: hidden;
-      .gatsby-image-wrapper {
-        width: 100%;
-        height: 100%;
-      }
-      img {
-        object-fit: cover;
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
+
   .mainContent {
-    max-width: 1600px;
-    margin: 0 auto;
     padding: 2rem;
     box-sizing: border-box;
     font-size: 1.2rem;
     line-height: 1.5em;
     background: #efefef;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+
     @media (max-width: 700px) {
       padding: 1rem;
     }

@@ -6,7 +6,8 @@
   "scripts": {
     "build": "gatsby build",
     "clean-cache": "gatsby clean",
-    "dev": "yarn run clean-cache && gatsby develop",
+    "dev": "yarn run clean-cache && yarn develop",
+    "develop": "GATSBY_GRAPHQL_IDE=playground gatsby develop",
     "lint": "eslint .",
     "format": "prettier-eslint --write \"**/*.js\" \"!.cache/**\" \"!node_modules/**\" \"!public/**\"",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\""

@@ -6,12 +6,15 @@ import TwitchIcon from 'react-icons/lib/fa/twitch';
 import YoutubeIcon from 'react-icons/lib/fa/youtube';
 import DAIcon from 'react-icons/lib/fa/deviantart';
 import LinkIcon from 'react-icons/lib/fa/external-link-square';
+import styled from 'styled-components';
 
-const SocialMediaLink = ({ url, ...props }) => {
+const SocialMediaLink = ({ url, includeName = false, ...props }) => {
   const finalUrl = url.startsWith('http') ? url : `https://${url}`;
+  const websiteName = extractWebsiteName(finalUrl);
   return (
     <a href={finalUrl} {...props}>
-      <SocialMediaIcon websiteName={extractWebsiteName(finalUrl)} />
+      <SocialMediaIcon className="website-icon" websiteName={websiteName} />{' '}
+      {includeName && <span className="website-name">{websiteName}</span>}
     </a>
   );
 };
@@ -35,4 +38,9 @@ export const SocialMediaIcon = ({ websiteName, ...props }) => {
   if (websiteName === 'deviantart') return <DAIcon {...props} />;
   return <LinkIcon {...props} />;
 };
-export default SocialMediaLink;
+
+export default styled(SocialMediaLink)`
+  .website-name {
+    text-transform: capitalize;
+  }
+`;

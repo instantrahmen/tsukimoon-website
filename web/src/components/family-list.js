@@ -4,7 +4,7 @@ import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 import { Link } from 'gatsby';
 import PortableText from './portableText';
-import SocialMediaLink from './social-media-link';
+import SocialMediaLink, { extractWebsiteName } from './social-media-link';
 import Figure from './Figure';
 import { sortBy } from 'lodash';
 
@@ -22,7 +22,7 @@ const FamilyList = ({ items, siteSettings }) => {
             </div>
             {/* <pre>{JSON.stringify(cutie, null, 2)}</pre> */}
             <div className="name">
-              <Link to="/family">{cutie.name}</Link>
+              <Link to={`/family/${cutie.slug.current}`}>{cutie.name}</Link>
             </div>
           </CutieHeader>
           <div className="card-body">
@@ -34,7 +34,10 @@ const FamilyList = ({ items, siteSettings }) => {
               <ul>
                 {cutie.socialMediaLinks.map(url => (
                   <li key={`${cutie.id}/${url}`}>
-                    <SocialMediaLink url={url} />
+                    <SocialMediaLink
+                      url={url}
+                      label={`${cutie.name}'s ${extractWebsiteName(url)} page`}
+                    />
                   </li>
                 ))}
               </ul>
@@ -52,12 +55,18 @@ const rgba = ({ r, g, b, a = 1 }) => `rgba(${r}, ${g}, ${b}, ${a})`;
 
 const FamilyGrid = styled.ul`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   list-style: none;
-  margin: 3rem auto;
-  padding: 0;
-  max-width: 1600px;
+  margin: 1rem auto;
   grid-gap: 1rem;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 1rem;
+
+  @media (min-width: 1800px) {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
   li.familyMember {
     background: #f3f3f3;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

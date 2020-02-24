@@ -1,20 +1,87 @@
 import React from 'react';
 import styled from 'styled-components';
+import { buildImageObj } from '../lib/helpers';
+import { imageUrlFor } from '../lib/image-url';
+import Figure from '../components/Figure';
 
-const Container = ({ children }) => {
-  return <Root className={'root'}>{children}</Root>;
+const Container = ({ children, coverPhoto, coverColor = '#1a1', coverPhotoHeight = 400 }) => {
+  const hotspot = generateHotspot(coverPhoto);
+  console.log({ hotspot });
+  return (
+    <Root className={'root'} hotspot={hotspot} color={coverColor}>
+      {coverPhoto && coverPhoto.asset && (
+        <div className={'mainImage'}>
+          <Figure maxWidth={1920} node={coverPhoto} noCaption className="img-container" />
+        </div>
+      )}
+      {!coverPhoto && <div className={'mainImage'}></div>}
+      <div className="page-content">{children}</div>
+    </Root>
+  );
+};
+
+const generateHotspot = coverPhoto => {
+  if (!coverPhoto || !coverPhoto.hotspot) {
+    return { x: 'center', y: 'center' };
+  }
+  return {
+    x: `${Math.floor(coverPhoto.hotspot.x * 100)}%`,
+    y: `${Math.floor(coverPhoto.hotspot.y * 100)}%`
+  };
 };
 
 export default Container;
 
 const Root = styled.div`
-  /* background: #f6f6f6; */
-  /* background-color: #68bd5e;
-  background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%232ea12e' fill-opacity='0.32' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E"); */
-  background: none;
-  min-height: 100vh;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-  width: 100vw;
-  max-width: 100%;
-  margin: 0 auto;
+  .page-content {
+    background: #efefef;
+    min-height: 100vh;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    width: 100vw;
+    margin: 0 auto;
+    position: relative;
+    max-width: 1200px;
+    box-sizing: border-box;
+    padding: 1rem;
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      padding: 1rem 0;
+    }
+  }
+
+  .mainImage {
+    margin-top: -79px;
+    width: 100%;
+    background: black;
+    position: sticky;
+    top: calc(-500px + 79px);
+    z-index: 10;
+    left: 0%;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    height: ${({ coverPhotoHeight = 400 }) => `${coverPhotoHeight}px`};
+    border-bottom: 1px solid ${({ color }) => color};
+    display: flex;
+    background: ${({ color }) => color};
+    figure {
+      width: 100%;
+      margin: 0 auto;
+      height: ${({ coverPhotoHeight = 400 }) => `${coverPhotoHeight}px`};
+      overflow: hidden;
+
+      .gatsby-image-wrapper {
+        width: 100%;
+        height: 100%;
+      }
+
+      img {
+        object-fit: cover;
+        object-position: ${({ hotspot }) => `${hotspot.x} ${hotspot.y}`} !important;
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
 `;
