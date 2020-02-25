@@ -32,6 +32,13 @@ export default {
       }
     },
     {
+      name: 'logoImage',
+      title: 'Logo Image',
+      description:
+        'Image to use as the site logo. (should ideally be .png with transparent background that is at least 256x256 or, even better, an svg)',
+      type: 'image'
+    },
+    {
       name: 'familyCoverPhoto',
       title: 'Family Page Cover Photo',
       description: 'The cover photo for the family page.',
