@@ -13,6 +13,7 @@ import BlogPostPreviewList from '../components/blog-post-preview-list';
 import GraphQLErrorList from '../components/graphql-error-list';
 import SEO from '../components/seo';
 import Layout from '../containers/layout';
+import Logo from '../components/logo';
 
 export const query = graphql`
   fragment SanityImageFragment on SanityImage {
@@ -101,7 +102,8 @@ const IndexPage = props => {
 
       <div className="header-text">
         <div className="title">
-          <img src={icon} alt="" className="brand-image" style={{ width: 256 }} />
+          {/* <img src={icon} alt="" className="brand-image" style={{ width: 256 }} /> */}
+          <BrandImage width={256} />
           <h1>{site.title}</h1>
           <h2>{site.tagline}</h2>
         </div>
@@ -173,6 +175,16 @@ const HeaderGallery = styled(Layout)`
   }
 
   .brand-image {
+    filter: drop-shadow(0px 0px 7px #000a);
+    border-radius: 200px;
+  }
+`;
+
+const BrandImage = styled(Logo)`
+  width: 256px;
+  margin: 0 auto;
+
+  img {
     filter: drop-shadow(0px 0px 7px #000a);
     border-radius: 200px;
   }

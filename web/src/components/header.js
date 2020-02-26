@@ -3,25 +3,30 @@ import styled, { css } from 'styled-components';
 import React, { useState } from 'react';
 import Icon from './icon';
 import { cn } from '../lib/helpers';
-import icon from '../favicon.png';
-const Header = ({
-  className,
-  onHideNav,
-  onShowNav,
-  showNav,
-  siteTitle,
-  logoScale = 1,
-  siteHeaderImages,
-  currentHeaderImage
-}) => {
+import Logo from './logo';
+import { useStaticQuery, graphql } from 'gatsby';
+
+// import icon from '../favicon.png';
+const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => {
   const [navVisible, setNavVisible] = useState(false);
+  const data = useStaticQuery(graphql`
+    query SiteSettings {
+      site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+        title
+        description
+        keywords
+        tagline
+      }
+    }
+  `);
+  console.log({ data });
   return (
     <div className={className}>
       <div className={'wrapper'}>
         <div className={'branding'}>
           <Link to="/">
-            <Logo alt="" scale={logoScale} src={icon} />
-            {siteTitle}
+            <HeaderLogo />
+            {data.site.title}
           </Link>
         </div>
 
@@ -163,12 +168,8 @@ export default styled(Header)`
   }
 `;
 
-const Logo = styled.img`
-  margin-right: 1rem;
+const HeaderLogo = styled(Logo)`
   width: 4rem;
-  transform-origin: center center;
-  filter: drop-shadow(0px 0px 7px #000a);
-
   @media (max-width: 700px) {
     width: 3rem;
   }
