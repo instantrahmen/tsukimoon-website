@@ -20,7 +20,9 @@ export const query = graphql`
       coverPhoto {
         ...SanityImage
       }
-
+      featuredPhotos {
+        ...SanityImageFragment
+      }
       color {
         hex
       }

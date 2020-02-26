@@ -57,7 +57,8 @@ const Root = styled.div`
     width: 100%;
     background: black;
     position: sticky;
-    top: calc(-500px + 79px);
+    top: calc(-400px + 79px);
+
     z-index: 10;
     left: 0%;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -65,6 +66,10 @@ const Root = styled.div`
     border-bottom: 1px solid ${({ color }) => color};
     display: flex;
     background: ${({ color }) => color};
+
+    @media (max-width: 700px) {
+      top: calc(-400px + 67px);
+    }
     figure {
       width: 100%;
       margin: 0 auto;

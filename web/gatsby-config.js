@@ -21,6 +21,12 @@ module.exports = {
         watchMode: !isProd,
         overlayDrafts: !isProd
       }
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        precachePages: [`/about-tsuki/`, `/family/`, `/family/*`]
+      }
     }
   ]
 };
