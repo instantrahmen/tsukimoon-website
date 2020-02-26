@@ -42,9 +42,7 @@ const FamilyMemberPageTemplate = props => {
   console.log({ cutie });
 
   return (
-    <Layout
-    // backgroundColor={cutie.color.hex}
-    >
+    <Layout backgroundColor={cutie.color.hex}>
       {errors && <SEO title="GraphQL Error" />}
       {cutie && (
         <SEO
