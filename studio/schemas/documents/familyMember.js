@@ -58,10 +58,24 @@ export default {
       }
     },
     {
+      name: 'featuredPhotos',
+      title: 'Featured Photos',
+      description: `Featured photos that will show in the sidebar of the family member's page.`,
+      type: 'array',
+      of: [
+        {
+          type: 'image'
+        }
+      ],
+      options: {
+        layout: 'grid'
+      }
+    },
+    {
       name: 'sortIndex',
       type: 'number',
       description:
-        'The lower the number, the higher in the list it will show. Must be greater than zero. Leave blank to just use default sorting'
+        'The lower the number, the higher in the list it will show. Must be positive. Leave blank to just use default sorting'
       // validation: Rule => Rule.positive().interger()
     }
   ],

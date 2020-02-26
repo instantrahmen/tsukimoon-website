@@ -18,6 +18,7 @@
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
     "@sanity/color-input"
+    // "dark-theme"
   ],
   "parts": [
     {
