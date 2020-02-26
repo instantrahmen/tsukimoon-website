@@ -34,6 +34,7 @@ const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => 
           name="Toggle Navigation"
           className={'toggleNavButton'}
           onClick={() => setNavVisible(!navVisible)}
+          aria-label="Toggle Navigation"
         >
           <Icon symbol="hamburger" />
         </button>
