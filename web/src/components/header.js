@@ -47,9 +47,9 @@ const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => 
             <li>
               <Link to="/family">Tsuki's Family</Link>
             </li>
-            {/* <li>
-            <Link to="/">Weekly Photos</Link>
-          </li> */}
+            <li>
+              <Link to="/contact">Contact Tsuki</Link>
+            </li>
           </ul>
         </nav>
       </div>

@@ -41,6 +41,7 @@ const ContactPage = props => {
       <Layout>
         <SEO title="Tsuki's Family" />
         <Container coverPhoto={siteSettings.headerImages[0]}>
+          <h1>Get in contact with me!</h1>
           <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
             <input type="hidden" name="bot-field" />
             <input type="hidden" name="form-name" value="contact" />
@@ -84,6 +85,11 @@ const ContactPage = props => {
 export default ContactPage;
 
 const PageContainer = styled.div`
+  h1,
+  h2,
+  h3 {
+    text-align: center;
+  }
   form {
     display: grid;
     /* grid-template-columns: 1fr 1fr; */
