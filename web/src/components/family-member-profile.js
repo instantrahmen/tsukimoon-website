@@ -4,6 +4,8 @@ import Figure from './Figure';
 import PortableText from './portableText';
 import SocialMediaLink from './social-media-link';
 import { darken, readableColor, meetsContrastGuidelines } from 'polished';
+import { buildImageObj } from '../lib/helpers';
+import { imageUrlFor } from '../lib/image-url';
 
 const getReadableColor = (originalColor, backgroundColor = '#fff') => {
   const darkerColor = darken(0.1, originalColor);
@@ -26,7 +28,15 @@ const FamilyMemberProfile = ({ className, familyMember }) => {
   return (
     <div className={className}>
       <div className="avatar">
-        <Figure maxWidth={200} node={familyMember.image} />
+        {/* <Figure maxWidth={200} node={familyMember.image} /> */}
+        <img
+          src={imageUrlFor(buildImageObj(familyMember.image))
+            .width(200)
+            .height(200)
+            .fit('crop')
+            .url()}
+          alt=""
+        />
       </div>
       <div className="member-profile">
         <div className="panel bio-panel">
@@ -52,8 +62,8 @@ const FamilyMemberProfile = ({ className, familyMember }) => {
                     {/* <img
                     src={`https://picsum.photos/seed/image-${i}/400/300`}
                     alt="test"
-                  class={`image-${i}`} */}
-                    {/* /> */}
+                  class={`image-${i}`}
+                    /> */}
                     <Figure node={photo} maxWidth={200} />
                   </li>
                 ))}
@@ -96,7 +106,7 @@ export default styled(FamilyMemberProfile)`
     box-sizing: border-box;
     border-radius: 100%;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    border: 2px solid ${({ familyMember }) => getReadableColor(familyMember.color.hex)};
+    border: 2px solid ${({ familyMember }) => familyMember.color.hex};
     margin-top: -100px;
     z-index: 10;
 

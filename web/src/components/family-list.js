@@ -17,7 +17,15 @@ const FamilyList = ({ items, siteSettings }) => {
           <CutieHeader className="cutieHeader" color={rgba(cutie.color.rgb)}>
             <div className={'avatar'}>
               {cutie && cutie.image && cutie.image.asset && (
-                <Figure noCaption maxWidth={100} node={cutie.image} />
+                // <Figure noCaption maxWidth={100} node={cutie.image} />
+                <img
+                  src={imageUrlFor(buildImageObj(cutie.image))
+                    .width(200)
+                    .height(200)
+                    .fit('crop')
+                    .url()}
+                  alt=""
+                />
               )}
             </div>
             {/* <pre>{JSON.stringify(cutie, null, 2)}</pre> */}
@@ -134,7 +142,8 @@ const CutieHeader = styled.div`
   .avatar {
     padding: 1rem;
   }
-  .avatar figure {
+  .avatar figure,
+  .avatar img {
     border-radius: 300px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
     width: 100px;

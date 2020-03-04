@@ -12,15 +12,14 @@ const Figure = ({ className, node, noCaption = false, maxWidth = 1920 }) => {
   const hotspot = generateHotspot(node);
 
   return (
-    <figure className={className}>
+    <StyledFigure hotspot={hotspot} className={className}>
       <Img fluid={fluidProps} alt={node.alt} />
       {!noCaption && <figcaption>{node.caption}</figcaption>}
-    </figure>
+    </StyledFigure>
   );
 };
 
 const generateHotspot = coverPhoto => {
-  console.log({ coverPhoto });
   if (!coverPhoto || !coverPhoto.hotspot) {
     return { x: 'center', y: 'center' };
   }
@@ -30,6 +29,8 @@ const generateHotspot = coverPhoto => {
   };
 };
 
-export default styled(Figure)`
+export default Figure;
+
+const StyledFigure = styled.figure`
   object-position: ${({ hotspot }) => `${hotspot.x} ${hotspot.y}`} !important;
 `;

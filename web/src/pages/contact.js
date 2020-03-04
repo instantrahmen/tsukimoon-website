@@ -42,24 +42,36 @@ const ContactPage = props => {
         <SEO title="Tsuki's Family" />
         <Container coverPhoto={siteSettings.headerImages[0]}>
           <form name="contact" netlify>
-            <p>
-              <label>
-                Name <input type="text" name="name" />
-              </label>
-            </p>
-            <p>
-              <label>
-                Email <input type="email" name="email" />
-              </label>
-            </p>
-            <p>
-              <label>
-                Message <textarea name="message" placeholder="message" />
-              </label>
-            </p>
-            <p>
-              <button type="submit">Send</button>
-            </p>
+            <input
+              aria-label="name"
+              className="name"
+              placeholder="name"
+              type="text"
+              name="name"
+              required
+            />
+
+            <input
+              aria-label="email"
+              className="email"
+              placeholder="email"
+              type="email"
+              name="email"
+              required
+            />
+
+            <textarea
+              required
+              aria-label="message"
+              name="message"
+              placeholder="message"
+              className="message"
+            />
+            <div className="submit">
+              <button name="submit" type="submit">
+                Send
+              </button>
+            </div>
           </form>
         </Container>
       </Layout>
@@ -72,19 +84,65 @@ export default ContactPage;
 const PageContainer = styled.div`
   form {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    /* grid-template-columns: 1fr 1fr; */
+    grid-template-areas:
+      'name email'
+      'message message'
+      'submit submit';
+
+    width: 900px;
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    grid-gap: 10px;
+
+    @media (max-width: 700px) {
+      grid-template-areas:
+        'name name'
+        'email email'
+        'message message'
+        'submit submit';
+    }
   }
+
   input,
   textarea {
     padding: 0.5rem;
     border: 1px solid #999;
     border-radius: 0.3rem;
     font-size: 1rem;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
   }
 
-  textarea {
-    flex-basis: 1;
-    /* grid-column-start: 3; */
+  .name {
+    grid-area: name;
+  }
+  .email {
+    grid-area: email;
+  }
+
+  .message {
+    grid-area: message;
+    /* height: 20rem; */
+    height: 300px;
+  }
+
+  .submit {
+    grid-area: submit;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    height: 3rem;
+
+    button {
+      width: 100%;
+      height: 100%;
+      background: #68bd5e;
+      border: 1px solid #23ac78;
+      border-radius: 0.3rem;
+    }
   }
 `;
 
