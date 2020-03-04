@@ -42,6 +42,8 @@ const ContactPage = props => {
         <SEO title="Tsuki's Family" />
         <Container coverPhoto={siteSettings.headerImages[0]}>
           <form name="contact" method="post" data-netlify="true" data-netlify-honeypot="bot-field">
+            <input type="hidden" name="bot-field" />
+            <input type="hidden" name="form-name" value="contact" />
             <input
               aria-label="name"
               className="name"
