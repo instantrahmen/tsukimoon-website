@@ -5,6 +5,7 @@ import Icon from './icon';
 import { cn } from '../lib/helpers';
 import Logo from './logo';
 import { useStaticQuery, graphql } from 'gatsby';
+import TwitchLiveIndicator from './twitch-live-indicator';
 
 // import icon from '../favicon.png';
 const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => {
@@ -48,10 +49,11 @@ const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => 
               <Link to="/family">Tsuki's Family</Link>
             </li>
             <li>
-              <Link to="/contact">Contact Tsuki</Link>
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
         </nav>
+        <TwitchLiveIndicator />
       </div>
     </div>
   );
