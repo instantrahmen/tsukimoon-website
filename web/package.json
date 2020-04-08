@@ -2,7 +2,7 @@
   "private": true,
   "name": "@tsukimoon/web",
   "version": "1.0.0",
-  "author": "Sanity <hello@sanity.io>",
+  "author": "instantRahmen",
   "scripts": {
     "build": "gatsby build",
     "clean-cache": "gatsby clean",
