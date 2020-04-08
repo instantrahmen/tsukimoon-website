@@ -4,19 +4,19 @@ export default {
   title: 'Family member reference',
   fields: [
     {
-      name: 'author',
+      name: 'familyMember',
       type: 'reference',
       to: [
         {
-          type: 'familyMember'
-        }
-      ]
-    }
+          type: 'familyMember',
+        },
+      ],
+    },
   ],
   preview: {
     select: {
-      title: 'author.name',
-      media: 'author.image.asset'
-    }
-  }
+      title: 'familyMember.name',
+      media: 'familyMember.image.asset',
+    },
+  },
 };

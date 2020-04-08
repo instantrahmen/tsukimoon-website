@@ -18,6 +18,7 @@ import bodyPortableText from './objects/bodyPortableText';
 import bioPortableText from './objects/bioPortableText';
 import excerptPortableText from './objects/excerptPortableText';
 import mainImage from './objects/mainImage';
+import galleryImage from './objects/galleryImage';
 
 import authorReference from './objects/authorReference';
 
@@ -38,12 +39,13 @@ export default createSchema({
     category,
     author,
     mainImage,
+    galleryImage,
     authorReference,
     bodyPortableText,
     bioPortableText,
-    excerptPortableText
+    excerptPortableText,
 
     // When added to this list, object types can be used as
     // { type: 'typename' } in other document schemas
-  ])
+  ]),
 });

@@ -9,7 +9,7 @@ export default {
       name: 'title',
       type: 'string',
       title: 'Title',
-      description: 'Photo entry title'
+      description: 'Photo entry title',
     },
     {
       name: 'slug',
@@ -18,14 +18,14 @@ export default {
       description: 'Url slug for the photo entry',
       options: {
         source: 'title',
-        maxLength: 96
-      }
+        maxLength: 96,
+      },
     },
     {
       name: 'publishedAt',
       type: 'datetime',
       title: 'Date',
-      description: 'When were these photos taken?'
+      description: 'When were these photos taken?',
     },
     {
       name: 'photos',
@@ -35,27 +35,27 @@ export default {
         'If you have a lot to add, you can drag them from your file manager. Click on any photo to edit its caption',
       of: [
         {
-          type: 'mainImage'
-        }
+          type: 'galleryImage',
+        },
       ],
       options: {
-        layout: 'grid'
-      }
+        layout: 'grid',
+      },
     },
 
     {
       name: 'description',
       type: 'bodyPortableText',
       title: 'Description',
-      description: 'Use this field to describe the day if you want. Completely optional.'
-    }
+      description: 'Use this field to describe the day if you want. Completely optional.',
+    },
   ],
   preview: {
     select: {
       title: 'title',
       publishedAt: 'publishedAt',
       slug: 'slug',
-      media: 'mainImage'
+      media: 'mainImage',
     },
     prepare({ title = 'No title', publishedAt, slug = {}, media }) {
       const dateSegment = format(publishedAt, 'YYYY/MM');
@@ -63,8 +63,8 @@ export default {
       return {
         title,
         media,
-        subtitle: publishedAt ? path : 'Missing publishing date'
+        subtitle: publishedAt ? path : 'Missing publishing date',
       };
-    }
-  }
+    },
+  },
 };
