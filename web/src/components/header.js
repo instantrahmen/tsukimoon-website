@@ -1,63 +1,69 @@
-import { Link } from 'gatsby';
-import styled, { css } from 'styled-components';
-import React, { useState } from 'react';
-import Icon from './icon';
-import { cn } from '../lib/helpers';
-import Logo from './logo';
-import { useStaticQuery, graphql } from 'gatsby';
-import TwitchLiveIndicator from './twitch-live-indicator';
+import {Link, useStaticQuery, graphql} from 'gatsby'
+import styled, {css} from 'styled-components'
+import React, {useState} from 'react'
+import Icon from './icon'
+import {cn} from '../lib/helpers'
+import Logo from './logo'
+
+import TwitchLiveIndicator from './twitch-live-indicator'
 
 // import icon from '../favicon.png';
-const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => {
-  const [navVisible, setNavVisible] = useState(false);
+const Header = ({className, onHideNav, onShowNav, showNav, logoScale = 1}) => {
+  const [navVisible, setNavVisible] = useState(false)
   const data = useStaticQuery(graphql`
     query SiteSettings {
-      site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+      site: sanitySiteSettings(_id: {regex: "/(drafts.|)siteSettings/"}) {
         title
         description
         keywords
         tagline
       }
     }
-  `);
-  console.log({ data });
+  `)
+  console.log({data})
   return (
     <div className={className}>
       <div className={'wrapper'}>
         <div className={'branding'}>
-          <Link to="/">
+          <Link to='/'>
             <HeaderLogo />
             {data.site.title}
           </Link>
         </div>
 
         <button
-          name="Toggle Navigation"
+          name='Toggle Navigation'
           className={'toggleNavButton'}
           onClick={() => setNavVisible(!navVisible)}
-          aria-label="Toggle Navigation"
+          aria-label='Toggle Navigation'
         >
-          <Icon symbol="hamburger" />
+          <Icon symbol='hamburger' />
         </button>
 
         <nav className={cn('nav', navVisible && 'showNav')}>
           <ul>
             <li>
-              <Link to="/about-tsuki">About Tsuki</Link>
+              <Link to='/about-tsuki'>About Tsuki</Link>
             </li>
             <li>
-              <Link to="/family">Tsuki's Family</Link>
+              <Link to='/family'>Tsuki's Family</Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link to='/contact'>Contact</Link>
+            </li>
+            <li>
+              <a href='https://streamlabs.com/tsukimoonvr/tip#/merch'>Store</a>
+            </li>
+            <li>
+              <a href='https://streamlabs.com/siatokage/tip'>Donate</a>
             </li>
           </ul>
         </nav>
         <TwitchLiveIndicator />
       </div>
     </div>
-  );
-};
+  )
+}
 
 export default styled(Header)`
   display: flex;
@@ -169,11 +175,11 @@ export default styled(Header)`
       }
     }
   }
-`;
+`
 
 const HeaderLogo = styled(Logo)`
   width: 4rem;
   @media (max-width: 700px) {
     width: 3rem;
   }
-`;
+`
