@@ -22,11 +22,11 @@ module.exports = {
         overlayDrafts: !isProd
       }
     },
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        precachePages: [`/about-tsuki/`, `/family/`, `/family/*`]
-      }
-    }
+    // {
+    //   resolve: `gatsby-plugin-offline`,
+    //   options: {
+    //     precachePages: [`/about-tsuki/`, `/family/`, `/family/*`]
+    //   }
+    // }
   ]
 };
