@@ -3,10 +3,10 @@ import PortableText from './portableText';
 import Figure from '../components/Figure';
 import styled from 'styled-components';
 import { format } from 'date-fns';
-import SlideshowModal from '../components/slideshow-modal';
 import { AnimatePresence, motion } from 'framer-motion';
 import { random } from 'lodash';
 import { snap } from '@popmotion/popcorn';
+import SlideshowModal from '../components/slideshow-modal';
 
 const snapToDirection = snap([-1, 1]);
 const container = {

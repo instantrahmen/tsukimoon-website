@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import Figure from './Figure';
 import PortableText from './portableText';
@@ -6,6 +6,7 @@ import SocialMediaLink from './social-media-link';
 import { darken, readableColor, meetsContrastGuidelines } from 'polished';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
+import SlideshowModal from '../components/slideshow-modal';
 
 const getReadableColor = (originalColor, backgroundColor = '#fff') => {
   const darkerColor = darken(0.1, originalColor);
@@ -25,53 +26,65 @@ const getReadableColor = (originalColor, backgroundColor = '#fff') => {
 };
 
 const FamilyMemberProfile = ({ className, familyMember }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const openPhoto = photoIndex => {
+    setCurrentSlide(photoIndex);
+    setModalOpen(true);
+  };
+
   return (
-    <div className={className}>
-      <div className="avatar">
-        {/* <Figure maxWidth={200} node={familyMember.image} /> */}
-        <img
-          src={imageUrlFor(buildImageObj(familyMember.image))
-            .width(200)
-            .height(200)
-            .fit('crop')
-            .url()}
-          alt=""
-        />
-      </div>
-      <div className="member-profile">
-        <div className="panel bio-panel">
-          {familyMember._rawLongBio && <PortableText blocks={familyMember._rawLongBio} />}
+    <>
+      <div className={className}>
+        <div className="avatar">
+          {/* <Figure maxWidth={200} node={familyMember.image} /> */}
+          <img
+            src={imageUrlFor(buildImageObj(familyMember.image))
+              .width(200)
+              .height(200)
+              .fit('crop')
+              .url()}
+            alt=""
+          />
         </div>
-        <div className="panel info-panel">
-          <div className="sidebar-item">
-            <h3 className="sidebar-title">Where to find {familyMember.name}</h3>
-            <ul className="social-media-links">
-              {familyMember.socialMediaLinks.map(link => (
-                <li key={JSON.stringify(link)}>
-                  <SocialMediaLink url={link} includeName />
-                </li>
-              ))}
-            </ul>
+        <div className="member-profile">
+          <div className="panel bio-panel">
+            {familyMember._rawLongBio && <PortableText blocks={familyMember._rawLongBio} />}
           </div>
-          <div className="sidebar-item">
-            <h3 className="sidebar-title">Featured Photos</h3>
-            <ul className="featured-photos">
-              {familyMember.featuredPhotos &&
-                familyMember.featuredPhotos.map((photo, i) => (
-                  <li key={JSON.stringify(photo)}>
-                    {/* <img
-                    src={`https://picsum.photos/seed/image-${i}/400/300`}
-                    alt="test"
-                  class={`image-${i}`}
-                    /> */}
-                    <Figure node={photo} maxWidth={200} />
+          <div className="panel info-panel">
+            <div className="sidebar-item">
+              <h3 className="sidebar-title">Where to find {familyMember.name}</h3>
+              <ul className="social-media-links">
+                {familyMember.socialMediaLinks.map(link => (
+                  <li key={JSON.stringify(link)}>
+                    <SocialMediaLink url={link} includeName />
                   </li>
                 ))}
-            </ul>
+              </ul>
+            </div>
+            <div className="sidebar-item">
+              <h3 className="sidebar-title">Featured Photos</h3>
+              <ul className="featured-photos">
+                {familyMember.featuredPhotos &&
+                  familyMember.featuredPhotos.map((photo, i) => (
+                    <li role="button" onClick={() => openPhoto(i)} key={JSON.stringify(photo)}>
+                      <Figure node={photo} maxWidth={200} />
+                    </li>
+                  ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <SlideshowModal
+        slides={familyMember.featuredPhotos}
+        currentSlide={currentSlide}
+        setSlide={setCurrentSlide}
+        open={modalOpen}
+        setOpen={setModalOpen}
+      ></SlideshowModal>
+    </>
   );
 };
 
