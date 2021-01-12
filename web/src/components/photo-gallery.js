@@ -62,14 +62,15 @@ const PhotoGallery = ({ photoEntry }) => {
             animate={'show'}
           >
             {photos.map((photo, index) => (
-              <motion.button
+              <motion.li
                 variants={item}
                 onClick={() => openPhoto(index)}
                 key={photo.asset._id}
                 custom={index}
+                className="gallery-photo"
               >
                 <Figure maxWidth={1920 / 4} node={photo} noCaption className="img-container" />
-              </motion.button>
+              </motion.li>
             ))}
           </motion.ul>
         </AnimatePresence>
@@ -88,11 +89,10 @@ const PhotoGallery = ({ photoEntry }) => {
 export default PhotoGallery;
 
 const PhotoGalleryContainer = styled.div`
-  button {
+  .gallery-photo {
     margin: 0;
     padding: 0;
     border: none;
-    background: none;
 
     &:focus {
       outline: none;
@@ -150,6 +150,7 @@ const PhotoGalleryContainer = styled.div`
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
       transition: 200ms ease-in;
       height: 200px;
+      background: black;
 
       img,
       figure,
@@ -158,6 +159,11 @@ const PhotoGalleryContainer = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
+        opacity: 0.95;
+
+        &:hover {
+          opacity: 1;
+        }
       }
       &:hover {
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);

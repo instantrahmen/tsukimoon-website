@@ -20,6 +20,7 @@ const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, 
       return newSlideWrapped;
     });
   };
+  console.log({ slides });
 
   useEffect(() => {
     const keypressListener = window.addEventListener('keyup', e => {
@@ -70,10 +71,11 @@ const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, 
                 <div className="info">
                   {currentSlide + 1} / {slides.length}
                 </div>
+
                 <Figure
                   maxWidth={1920}
                   node={slides[currentSlide]}
-                  noCaption
+                  // noCaption
                   className="img-container"
                   initial={{ left: 1000 }}
                   animate={{ left: 0 }}
@@ -191,15 +193,43 @@ const SlideshowContainer = styled.div`
         top: 1rem;
         z-index: 111;
       }
+
+      .caption {
+        position: absolute;
+        bottom: 1rem;
+        z-index: 115;
+        left: 50%;
+
+        border: 1px solid #23ac78;
+        border-left: 3px solid #23ac78;
+        border-right: 3px solid #23ac78;
+        padding: 1rem;
+        box-sizing: border-box;
+        border-radius: 1rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+      }
       figure,
       picture,
       img,
       .gatsby-image-wrapper {
         width: 100%;
-        height: 100%;
+        max-height: 100%;
         margin: 0;
         padding: 0;
         object-fit: contain !important;
+        image-rendering: pixelated;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        flex: 1;
       }
     }
   }

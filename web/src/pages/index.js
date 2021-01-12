@@ -37,6 +37,8 @@ export const query = graphql`
     }
   }
   fragment SanityImage on SanityMainImage {
+    caption
+    tags
     crop {
       _key
       _type
@@ -59,6 +61,8 @@ export const query = graphql`
   }
 
   fragment SanityGalleryImageFragment on SanityGalleryImage {
+    caption
+    tags
     crop {
       _key
       _type
