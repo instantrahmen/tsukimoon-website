@@ -8,12 +8,12 @@ import DAIcon from 'react-icons/lib/fa/deviantart';
 import LinkIcon from 'react-icons/lib/fa/external-link-square';
 import styled from 'styled-components';
 
-const SocialMediaLink = ({ url, includeName = false, ...props }) => {
+const SocialMediaLink = ({ url, includeName = false, includeIcon = true, ...props }) => {
   const finalUrl = url.startsWith('http') ? url : `https://${url}`;
   const websiteName = extractWebsiteName(finalUrl);
   return (
     <a href={finalUrl} className="social-media-link" {...props}>
-      <SocialMediaIcon className="website-icon" websiteName={websiteName} />{' '}
+      {includeIcon && <SocialMediaIcon className="website-icon" websiteName={websiteName} />}{' '}
       {includeName && <span className="website-name">{websiteName}</span>}
     </a>
   );
@@ -44,7 +44,7 @@ export const SocialMediaIcon = ({ websiteName, ...props }) => {
 export default styled(SocialMediaLink)`
   .website-name {
     text-transform: capitalize;
-    padding-left: 1rem;
+    /* padding-left: 1rem; */
   }
 
   .social-media-link {

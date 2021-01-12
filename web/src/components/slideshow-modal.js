@@ -9,7 +9,7 @@ const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, 
   const nextSlide = (direction = 1) => {
     setSlide(cur => {
       const newSlide = cur + direction;
-      const newSlideWrapped = wrap(0, slides.length - 1, newSlide);
+      const newSlideWrapped = wrap(0, slides.length, newSlide);
       console.log({ currentSlide: cur, newSlideWrapped, newSlide });
 
       return newSlideWrapped;
@@ -48,6 +48,9 @@ const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, 
             </button>
 
             <div className="image">
+              <div className="info">
+                {currentSlide + 1} / {slides.length}
+              </div>
               <Figure
                 maxWidth={1920}
                 node={slides[currentSlide]}
@@ -142,6 +145,18 @@ const SlideshowContainer = styled.div`
       text-align: center;
       position: relative;
 
+      .info {
+        background: #111c;
+        border: 1px solid #565656;
+        color: white;
+        padding: 0.5rem;
+        font-size: 1rem;
+        border-radius: 0.25rem;
+        position: absolute;
+        right: 0;
+        top: 1rem;
+        z-index: 111;
+      }
       figure,
       picture,
       img,

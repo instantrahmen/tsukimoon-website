@@ -1,10 +1,12 @@
 import './global.css';
 import React, { useState, useEffect } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import { getFluidGatsbyImage } from 'gatsby-source-sanity';
 import Header from './header';
 import clientConfig from '../../client-config';
+import SocialMediaLink from './social-media-link';
 
 const Layout = ({
   className,
@@ -20,6 +22,13 @@ const Layout = ({
   showBackgroundImage = false,
   ...otherProps
 }) => {
+  const data = useStaticQuery(graphql`
+    query SiteSettingsForLayout {
+      site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
+        socialMediaLinks
+      }
+    }
+  `);
   return (
     <PageBody backgroundColor={backgroundColor}>
       <GlobalStyle />
@@ -47,16 +56,13 @@ const Layout = ({
                 instantRahmen
               </a>
             </div>
+            {/* Social Media Links */}
             <ul className="social-media-links">
-              <li>
-                <a href="https://twitter.com/TsukimoonVR">Twitter</a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/channel/UCOmNVkTPX-S9mVOy1ScYDIw">Youtube</a>
-              </li>
-              <li>
-                <a href="https://twitch.tv/TsukimoonVR">Twitch</a>
-              </li>
+              {data.site.socialMediaLinks.map((link, index) => (
+                <li key={`${link}-${index}`}>
+                  <SocialMediaLink includeIcon={false} url={link} includeName />
+                </li>
+              ))}
             </ul>
             <div className="attribution only-small-screen">
               Website built and designed by{' '}
@@ -182,8 +188,9 @@ footer {
     flex-direction: row;
     margin: 0;
     padding: 0;
+
     li {
-      margin-left: 10px;
+      margin-left: 1rem;
     }
 
     a:hover {
