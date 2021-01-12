@@ -11,14 +11,14 @@ const getTsukiStreamInfo = async () => {
     const { data } = await axios({
       method: 'GET',
       headers: { 'Client-ID': TWITCH_CLIENT_ID },
-      url: 'https://api.twitch.tv/helix/streams?user_login=tsukimoonvr',
+      url: 'https://api.twitch.tv/helix/streams?user_login=tsukimoonvr'
     });
 
-    console.log({ TSUKI_STREAM_DATA: data });
+    // console.log({ TSUKI_STREAM_DATA: data });
     return data.data[0];
   } catch (e) {
-    console.log('failed to fetch user');
-    console.log(e);
+    // console.log('failed to fetch user');
+    console.error(e);
     return null;
   }
 };
@@ -26,8 +26,8 @@ const TwitchLiveIndicator = ({ className }) => {
   const [live, setLive] = useState(false);
 
   useLayoutEffect(() => {
-    getTsukiStreamInfo().then((data) => {
-      console.log({ liveData: data });
+    getTsukiStreamInfo().then(data => {
+      // console.log({ liveData: data });
       setLive(!!data);
     });
   }, []);

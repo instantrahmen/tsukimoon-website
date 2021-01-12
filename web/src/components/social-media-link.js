@@ -12,7 +12,7 @@ const SocialMediaLink = ({ url, includeName = false, ...props }) => {
   const finalUrl = url.startsWith('http') ? url : `https://${url}`;
   const websiteName = extractWebsiteName(finalUrl);
   return (
-    <a href={finalUrl} {...props}>
+    <a href={finalUrl} className="social-media-link" {...props}>
       <SocialMediaIcon className="website-icon" websiteName={websiteName} />{' '}
       {includeName && <span className="website-name">{websiteName}</span>}
     </a>
@@ -26,6 +26,8 @@ export const extractWebsiteName = url => {
   if (url.includes('youtube.com')) return 'youtube';
   if (url.includes('twitch.tv')) return 'twitch';
   if (url.includes('deviantart.com')) return 'deviantart';
+  if (url.includes('vtubie.com')) return 'vtubie';
+
   return url;
 };
 
@@ -42,5 +44,14 @@ export const SocialMediaIcon = ({ websiteName, ...props }) => {
 export default styled(SocialMediaLink)`
   .website-name {
     text-transform: capitalize;
+    padding-left: 1rem;
+  }
+
+  .social-media-link {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
   }
 `;

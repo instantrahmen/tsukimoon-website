@@ -39,7 +39,7 @@ const FamilyMemberPageTemplate = props => {
   const { data, errors } = props;
   const cutie = data && data.cutie;
 
-  console.log({ cutie });
+  // console.log({ cutie });
 
   return (
     <Layout backgroundColor={cutie.color.hex}>

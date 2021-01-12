@@ -154,7 +154,7 @@ footer {
   .attribution {
     font-size: .9rem;
     
-    @media (max-width: 700px) {
+    @media (max-width: 904px) {
       &.only-small-screen {
         display: auto;
       }
@@ -164,7 +164,7 @@ footer {
       }
     }
 
-    @media (min-width: 701px) {
+    @media (min-width: 905px) {
       &.only-small-screen {
         display: none;
       }
@@ -197,7 +197,7 @@ footer {
     }
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 904px) {
     display: flex;
     flex-wrap: wrap;
     width: 100%;

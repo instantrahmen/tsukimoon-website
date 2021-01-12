@@ -33,7 +33,7 @@ export default styled(StaticPage)`
     line-height: 1.5em;
     background: #efefef;
 
-    @media (max-width: 700px) {
+    @media (max-width: 904px) {
       padding: 1rem;
     }
 

@@ -4,11 +4,17 @@ import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 import Figure from '../components/Figure';
 
-const Container = ({ children, coverPhoto, coverColor = '#1a1', coverPhotoHeight = 400 }) => {
+const Container = ({
+  children,
+  coverPhoto,
+  coverColor = '#1a1',
+  coverPhotoHeight = 400,
+  fullWidth = false
+}) => {
   const hotspot = generateHotspot(coverPhoto);
-  console.log({ hotspot });
+  // console.log({ hotspot });
   return (
-    <Root className={'root'} hotspot={hotspot} color={coverColor}>
+    <Root className={'root'} hotspot={hotspot} color={coverColor} fullWidth={fullWidth}>
       {coverPhoto && coverPhoto.asset && (
         <div className={'mainImage'}>
           <Figure maxWidth={1920} node={coverPhoto} noCaption className="img-container" />
@@ -40,7 +46,7 @@ const Root = styled.div`
     width: 100vw;
     margin: 0 auto;
     position: relative;
-    max-width: 1200px;
+    max-width: ${({ fullWidth }) => (fullWidth ? '100%' : '1200px')};
     box-sizing: border-box;
     padding: 1rem;
     h1,
@@ -67,7 +73,7 @@ const Root = styled.div`
     display: flex;
     background: ${({ color }) => color};
 
-    @media (max-width: 700px) {
+    @media (max-width: 904px) {
       top: calc(-400px + 67px);
     }
     figure {

@@ -11,10 +11,10 @@ const getReadableColor = (originalColor, backgroundColor = '#fff') => {
   const darkerColor = darken(0.1, originalColor);
   const evenDarkerColor = darken(0.1, originalColor);
 
-  console.log({
-    [originalColor]: meetsContrastGuidelines(backgroundColor, originalColor),
-    darker: meetsContrastGuidelines(backgroundColor, darkerColor)
-  });
+  // console.log({
+  //   [originalColor]: meetsContrastGuidelines(backgroundColor, originalColor),
+  //   darker: meetsContrastGuidelines(backgroundColor, darkerColor)
+  // });
 
   if (originalColor === '#fff' || originalColor === '#ffffff') return 'black  ';
   if (meetsContrastGuidelines(backgroundColor, originalColor).AAA) return originalColor;
@@ -149,7 +149,7 @@ export default styled(FamilyMemberProfile)`
       text-align: center;
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 904px) {
       grid-template-columns: 1fr;
 
       .info-panel {

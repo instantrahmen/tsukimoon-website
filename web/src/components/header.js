@@ -1,70 +1,78 @@
-import {Link, useStaticQuery, graphql} from 'gatsby'
-import styled, {css} from 'styled-components'
-import React, {useState} from 'react'
-import Icon from './icon'
-import {cn} from '../lib/helpers'
-import Logo from './logo'
+import { Link, useStaticQuery, graphql } from 'gatsby';
+import styled, { css } from 'styled-components';
+import React, { useState } from 'react';
+import Icon from './icon';
+import { cn } from '../lib/helpers';
+import Logo from './logo';
 
-import TwitchLiveIndicator from './twitch-live-indicator'
+import TwitchLiveIndicator from './twitch-live-indicator';
 
 // import icon from '../favicon.png';
-const Header = ({className, onHideNav, onShowNav, showNav, logoScale = 1}) => {
-  const [navVisible, setNavVisible] = useState(false)
+const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => {
+  const [navVisible, setNavVisible] = useState(false);
   const data = useStaticQuery(graphql`
     query SiteSettings {
-      site: sanitySiteSettings(_id: {regex: "/(drafts.|)siteSettings/"}) {
+      site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
         title
         description
         keywords
         tagline
       }
     }
-  `)
-  console.log({data})
+  `);
   return (
     <div className={className}>
       <div className={'wrapper'}>
         <div className={'branding'}>
-          <Link to='/'>
+          <Link to="/">
             <HeaderLogo />
             {data.site.title}
           </Link>
         </div>
 
         <button
-          name='Toggle Navigation'
+          name="Toggle Navigation"
           className={'toggleNavButton'}
           onClick={() => setNavVisible(!navVisible)}
-          aria-label='Toggle Navigation'
+          aria-label="Toggle Navigation"
         >
-          <Icon symbol='hamburger' />
+          <Icon symbol="hamburger" />
         </button>
 
         <nav className={cn('nav', navVisible && 'showNav')}>
           <ul>
-            <li>
-              <Link to='/about-tsuki'>About Tsuki</Link>
-            </li>
-            <li>
-              <Link to='/family'>Tsuki's Family</Link>
-            </li>
-            <li>
-              <Link to='/contact'>Contact</Link>
-            </li>
-            <li>
-              <a href='https://streamlabs.com/tsukimoonvr/tip#/merch'>Store</a>
-            </li>
-            <li>
-              <a href='https://streamlabs.com/siatokage/tip'>Donate</a>
-            </li>
+            <NavLink>
+              <Link to="/about-tsuki">About Tsuki</Link>
+            </NavLink>
+            <NavLink>
+              <Link to="/family">Tsuki's Family</Link>
+            </NavLink>
+            <NavLink>
+              <Link to="/gallery">Gallery</Link>
+            </NavLink>
+            <NavLink>
+              <Link to="/contact">Contact</Link>
+            </NavLink>
+            <NavLink>
+              <a href="https://streamlabs.com/tsukimoonvr/tip#/merch">Store</a>
+            </NavLink>
+            <NavLink noline>
+              <a href="https://streamlabs.com/siatokage/tip">Donate</a>
+            </NavLink>
           </ul>
         </nav>
         <TwitchLiveIndicator />
       </div>
     </div>
-  )
-}
+  );
+};
 
+const NavLink = ({ children, noline = false }) => (
+  <>
+    <li>{children}</li>
+    {!noline && <li className="divider">{' | '}</li>}
+  </>
+);
 export default styled(Header)`
   display: flex;
   color: white;
@@ -77,7 +85,7 @@ export default styled(Header)`
   box-sizing: border-box;
   z-index: 100;
 
-  @media (max-width: 700px) {
+  @media (max-width: 904px) {
     position: fixed;
   }
 
@@ -91,7 +99,7 @@ export default styled(Header)`
     box-sizing: border-box;
     flex-wrap: wrap;
 
-    @media (max-width: 700px) {
+    @media (max-width: 904px) {
       padding: 0.5rem 1rem 0.5rem 1rem;
     }
   }
@@ -112,7 +120,7 @@ export default styled(Header)`
   }
   .toggleNavButton {
     display: flex;
-    @media (min-width: 700px) {
+    @media (min-width: 905px) {
       display: none;
     }
 
@@ -131,7 +139,7 @@ export default styled(Header)`
     font-size: 2rem;
     display: flex;
     align-items: center;
-    @media (max-width: 700px) {
+    @media (max-width: 904px) {
       font-size: 1.8rem;
     }
     * {
@@ -147,9 +155,12 @@ export default styled(Header)`
         margin-left: 10px;
       }
     }
-    @media (max-width: 700px) {
+    @media (max-width: 904px) {
       display: none;
 
+      .divider {
+        display: none;
+      }
       &.showNav {
         display: block;
         flex-basis: 100%;
@@ -175,11 +186,11 @@ export default styled(Header)`
       }
     }
   }
-`
+`;
 
 const HeaderLogo = styled(Logo)`
   width: 4rem;
-  @media (max-width: 700px) {
+  @media (max-width: 904px) {
     width: 3rem;
   }
-`
+`;

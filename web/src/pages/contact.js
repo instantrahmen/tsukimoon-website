@@ -98,13 +98,13 @@ const PageContainer = styled.div`
       'message message'
       'submit submit';
 
-    width: 900px;
+    width: 904px;
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
     grid-gap: 10px;
 
-    @media (max-width: 700px) {
+    @media (max-width: 904px) {
       grid-template-areas:
         'name name'
         'email email'
