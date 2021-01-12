@@ -4,6 +4,29 @@ import Figure from '../components/Figure';
 import styled from 'styled-components';
 import { format } from 'date-fns';
 import SlideshowModal from '../components/slideshow-modal';
+import { AnimatePresence, motion } from 'framer-motion';
+import { random } from 'lodash';
+import { snap } from '@popmotion/popcorn';
+
+const snapToDirection = snap([-1, 1]);
+const container = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1
+    }
+  }
+};
+
+const item = {
+  // hidden: index => ({ opacity: 0, y: -1000, x: 1000 * (index % 2 === 0 ? -1 : 1) }),
+  hidden: { opacity: 0 },
+
+  show: {
+    opacity: 1
+  }
+};
 
 const PhotoGallery = ({ photoEntry }) => {
   const { title, _rawDescription, photos, publishedAt } = photoEntry;
@@ -31,14 +54,25 @@ const PhotoGallery = ({ photoEntry }) => {
             {_rawDescription && <PortableText blocks={_rawDescription} />}
           </article>
         </div>
-
-        <ul className="photo-grid">
-          {photos.map((photo, index) => (
-            <button onClick={() => openPhoto(index)} key={photo.asset._id}>
-              <Figure maxWidth={1920 / 4} node={photo} noCaption className="img-container" />
-            </button>
-          ))}
-        </ul>
+        <AnimatePresence>
+          <motion.ul
+            className="photo-grid"
+            variants={container}
+            initial={'hidden'}
+            animate={'show'}
+          >
+            {photos.map((photo, index) => (
+              <motion.button
+                variants={item}
+                onClick={() => openPhoto(index)}
+                key={photo.asset._id}
+                custom={index}
+              >
+                <Figure maxWidth={1920 / 4} node={photo} noCaption className="img-container" />
+              </motion.button>
+            ))}
+          </motion.ul>
+        </AnimatePresence>
       </PhotoGalleryContainer>
       <SlideshowModal
         slides={photos}
@@ -107,6 +141,10 @@ const PhotoGalleryContainer = styled.div`
     margin: 0;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-gap: 1rem;
+
+    & > * {
+      will-change: transform;
+    }
     * {
       margin: 0;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);

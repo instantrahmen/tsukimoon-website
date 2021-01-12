@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { wrap } from '@popmotion/popcorn';
+// import ArrowLeft from 'react-icons/lib/fa/arrow-left';
+// import ArrowRight from 'react-icons/lib/fa/arrow-right';
+import { AiFillCaretLeft as ArrowLeft, AiFillCaretRight as ArrowRight } from 'react-icons/ai';
+import { AnimatePresence, motion } from 'framer-motion';
 
 import PortableText from './portableText';
 import Figure from './Figure';
+import Carousel from './carousel';
 
 const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, setSlide }) => {
   const nextSlide = (direction = 1) => {
@@ -35,36 +40,54 @@ const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, 
     };
   }, []);
 
+  const spring = {
+    type: 'spring',
+    damping: 20,
+    stiffness: 200
+  };
+
   return (
-    <SlideshowContainer>
+    <AnimatePresence>
       {open && (
-        <div className="overlay">
-          <button className="close-button" onClick={() => setOpen(false)}>
-            &times;
-          </button>
-          <div className="modal-content">
-            <button className="control prev" onClick={() => nextSlide(-1)}>
-              {'<'}
+        <SlideshowContainer>
+          <motion.div
+            initial={{ top: 1000 }}
+            animate={{ top: 0 }}
+            exit={{ top: 1000 }}
+            transition={spring}
+            className="overlay"
+          >
+            <button className="close-button" onClick={() => setOpen(false)}>
+              &times;
             </button>
 
-            <div className="image">
-              <div className="info">
-                {currentSlide + 1} / {slides.length}
+            <div className="modal-content">
+              <button className="control prev" onClick={() => nextSlide(-1)}>
+                <ArrowLeft></ArrowLeft>
+              </button>
+
+              <div className="image">
+                <div className="info">
+                  {currentSlide + 1} / {slides.length}
+                </div>
+                <Figure
+                  maxWidth={1920}
+                  node={slides[currentSlide]}
+                  noCaption
+                  className="img-container"
+                  initial={{ left: 1000 }}
+                  animate={{ left: 0 }}
+                  exit={{ left: -1000 }}
+                />
               </div>
-              <Figure
-                maxWidth={1920}
-                node={slides[currentSlide]}
-                noCaption
-                className="img-container"
-              />
+              <button className="control next" onClick={() => nextSlide(1)}>
+                <ArrowRight></ArrowRight>
+              </button>
             </div>
-            <button className="control next" onClick={() => nextSlide(1)}>
-              {'>'}
-            </button>
-          </div>
-        </div>
+          </motion.div>
+        </SlideshowContainer>
       )}
-    </SlideshowContainer>
+    </AnimatePresence>
   );
 };
 
@@ -115,6 +138,17 @@ const SlideshowContainer = styled.div`
     text-align: center;
     background: #000000ab;
     z-index: 100;
+
+    &:after {
+      content: ' ';
+      height: 30vh;
+      background: #000000ab;
+
+      position: absolute;
+      bottom: -30vh;
+      left: 0;
+      width: 100vw;
+    }
   }
 
   .modal-content {

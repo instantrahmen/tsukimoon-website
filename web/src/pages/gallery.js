@@ -57,6 +57,7 @@ const GalleryPage = props => {
   const galleryNodes = data && data.photoEntries.nodes;
   const siteSettings = data.site;
   const { familyCoverPhoto } = siteSettings;
+  // const
   // console.log({ siteSettings, galleryNodes, data });
   return (
     <PageContainer>

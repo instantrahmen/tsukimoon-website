@@ -20,6 +20,7 @@ const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => 
       }
     }
   `);
+
   return (
     <div className={className}>
       <div className={'wrapper'}>
@@ -70,9 +71,14 @@ const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => 
 const NavLink = ({ children, noline = false }) => (
   <>
     <li>{children}</li>
-    {!noline && <li className="divider">{' | '}</li>}
+    {!noline && (
+      <li className="divider" role="presentation">
+        {' | '}
+      </li>
+    )}
   </>
 );
+
 export default styled(Header)`
   display: flex;
   color: white;
@@ -154,6 +160,11 @@ export default styled(Header)`
       li {
         margin-left: 10px;
       }
+    }
+
+    .divider {
+      color: #aaaaaa45;
+      user-select: none;
     }
     @media (max-width: 904px) {
       display: none;
