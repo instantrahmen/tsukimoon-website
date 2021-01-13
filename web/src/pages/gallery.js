@@ -9,7 +9,7 @@ import FamilyList from '../components/family-list';
 import Layout from '../containers/layout';
 import { imageUrlFor } from '../lib/image-url';
 import { Link } from 'gatsby';
-
+import { random } from 'lodash';
 export const query = graphql`
   query GalleryPageQuery {
     site: sanitySiteSettings(_id: { regex: "/(drafts.|)siteSettings/" }) {
@@ -33,10 +33,7 @@ export const query = graphql`
         }
         title
         photos {
-          asset {
-            url
-            description
-          }
+          ...SanityGalleryImageFragment
         }
       }
     }
@@ -56,14 +53,17 @@ const GalleryPage = props => {
 
   const galleryNodes = data && data.photoEntries.nodes;
   const siteSettings = data.site;
-  const { familyCoverPhoto } = siteSettings;
+  // const { familyCoverPhoto } = siteSettings;
   // const
   // console.log({ siteSettings, galleryNodes, data });
+  const randomGalleryIndex = random(0, galleryNodes.length - 1);
+  const coverPhotoIndex = random(0, galleryNodes[randomGalleryIndex].photos.length - 1);
+  const coverPhoto = galleryNodes[randomGalleryIndex].photos[coverPhotoIndex];
   return (
     <PageContainer>
       <Layout>
         <SEO title="Photo Galleries" />
-        <Container coverPhoto={familyCoverPhoto}>
+        <Container coverPhoto={coverPhoto}>
           <div className="photo-gallery-content">
             <H1>Photo Galleries</H1>
             <ul>

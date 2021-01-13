@@ -159,10 +159,11 @@ const PhotoGalleryContainer = styled.div`
         width: 100%;
         height: 100%;
         object-fit: cover;
+        /* filter: brightness(95%); */
         opacity: 0.95;
-
         &:hover {
           opacity: 1;
+          /* filter: brightness(100%); */
         }
       }
       &:hover {

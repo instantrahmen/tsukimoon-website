@@ -81,6 +81,7 @@ export const query = graphql`
     }
     asset {
       _id
+      url
     }
   }
 

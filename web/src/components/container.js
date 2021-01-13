@@ -73,6 +73,8 @@ const Root = styled.div`
     display: flex;
     background: ${({ color }) => color};
 
+    image-rendering: pixelated;
+    /* filter: blur(3px) contrast(115%) brightness(100%); */
     @media (max-width: 904px) {
       top: calc(-400px + 67px);
     }
