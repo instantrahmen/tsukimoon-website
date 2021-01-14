@@ -9,13 +9,9 @@ import { imageUrlFor } from '../lib/image-url';
 import SlideshowModal from '../components/slideshow-modal';
 
 const getReadableColor = (originalColor, backgroundColor = '#fff') => {
+  // hmmm... these are both the same? Gotta look into that later.
   const darkerColor = darken(0.1, originalColor);
   const evenDarkerColor = darken(0.1, originalColor);
-
-  // console.log({
-  //   [originalColor]: meetsContrastGuidelines(backgroundColor, originalColor),
-  //   darker: meetsContrastGuidelines(backgroundColor, darkerColor)
-  // });
 
   if (originalColor === '#fff' || originalColor === '#ffffff') return 'black  ';
   if (meetsContrastGuidelines(backgroundColor, originalColor).AAA) return originalColor;
@@ -56,8 +52,8 @@ const FamilyMemberProfile = ({ className, familyMember }) => {
             <div className="sidebar-item">
               <h3 className="sidebar-title">Where to find {familyMember.name}</h3>
               <ul className="social-media-links">
-                {familyMember.socialMediaLinks.map(link => (
-                  <li key={JSON.stringify(link)}>
+                {familyMember.socialMediaLinks.map((link, index) => (
+                  <li key={`${index}-${JSON.stringify(link)}`}>
                     <SocialMediaLink url={link} includeName />
                   </li>
                 ))}

@@ -1,11 +1,12 @@
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import styled, { css } from 'styled-components';
 import React, { useState } from 'react';
 import Icon from './icon';
 import { cn } from '../lib/helpers';
 import Logo from './logo';
+import Link from './link-with-state';
 
-import TwitchLiveIndicator from './twitch-live-indicator';
+// import TwitchLiveIndicator from './twitch-live-indicator';
 
 // import icon from '../favicon.png';
 const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => {
@@ -54,15 +55,15 @@ const Header = ({ className, onHideNav, onShowNav, showNav, logoScale = 1 }) => 
             <NavLink>
               <Link to="/contact">Contact</Link>
             </NavLink>
-            <NavLink>
+            <NavLink noline>
               <a href="https://streamlabs.com/tsukimoonvr/tip#/merch">Store</a>
             </NavLink>
-            <NavLink noline>
+            {/* <NavLink noline>
               <a href="https://streamlabs.com/siatokage/tip">Donate</a>
-            </NavLink>
+            </NavLink> */}
           </ul>
         </nav>
-        <TwitchLiveIndicator />
+        {/* <TwitchLiveIndicator /> */}
       </div>
     </div>
   );

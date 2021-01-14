@@ -27,6 +27,7 @@ const StaticPageTemplate = props => {
   const { data, errors } = props;
   const page = data && data.page;
   return (
+    // <Container coverPhoto={page && page.mainImage}>
     <Layout>
       {errors && <SEO title="GraphQL Error" />}
       {page && (
@@ -45,6 +46,7 @@ const StaticPageTemplate = props => {
 
       {page && <StaticPage {...page} />}
     </Layout>
+    // </Container>
   );
 };
 

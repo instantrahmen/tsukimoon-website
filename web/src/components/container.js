@@ -3,7 +3,31 @@ import styled from 'styled-components';
 import { buildImageObj } from '../lib/helpers';
 import { imageUrlFor } from '../lib/image-url';
 import Figure from '../components/Figure';
+import { useLocation } from '@reach/router';
+import { AnimatePresence, motion } from 'framer-motion';
 
+const getDirection = (current = 0, prev = 0) => {
+  if (current === -1) return 0;
+  const diff = current - prev;
+  console.log({ current, prev, diff });
+
+  if (diff < 0) return -1;
+  if (diff > 0) return 1;
+  return 0;
+};
+
+const fuzzyIndexOf = (arr, str) => {
+  if (str === '/') return 0;
+
+  const index = arr.findIndex(value => {
+    if (value === '/') return false;
+    console.log({ value, str, includes: str.includes(value) });
+    return str.includes(value);
+  });
+
+  console.log({ index, str });
+  return index;
+};
 const Container = ({
   children,
   coverPhoto,
@@ -11,18 +35,55 @@ const Container = ({
   coverPhotoHeight = 400,
   fullWidth = false
 }) => {
+  const location = useLocation();
+  const pageOrder = ['/', '/about-tsuki', '/family', '/gallery', '/contact'];
+
+  const currentPage = location.pathname;
+  const currentPageIndex = pageOrder.indexOf(currentPage);
+
+  const prevPage = (location.state && location.state.prevPath) || currentPage;
+  // const prevPageIndex = pageOrder.indexOf(prevPage);
+  const prevPageIndex = fuzzyIndexOf(pageOrder, prevPage);
+
+  const direction = getDirection(currentPageIndex, prevPageIndex);
+  // console.log({ location, direction, prevPage, currentPage });
+
+  const animateFromSide = {
+    initial: { x: 1000 * direction, y: 1000 * Math.abs(Math.abs(direction) - 1) },
+    animate: { x: 0, y: 0 },
+    exit: { x: -1000 * direction, y: -1000 * Math.abs(Math.abs(direction) - 1) },
+    transition: { type: 'spring', duration: 0.8 }
+  };
+
+  const animateFromTop = {
+    initial: { y: -1000 },
+    animate: { y: 0 },
+    exit: { y: -1000 },
+    transition: { type: 'spring', duration: 0.5 }
+  };
   const hotspot = generateHotspot(coverPhoto);
-  // console.log({ hotspot });
   return (
-    <Root className={'root'} hotspot={hotspot} color={coverColor} fullWidth={fullWidth}>
-      {coverPhoto && coverPhoto.asset && (
-        <div className={'mainImage'}>
-          <Figure maxWidth={1920} node={coverPhoto} noCaption className="img-container" />
-        </div>
-      )}
-      {!coverPhoto && <div className={'mainImage'}></div>}
-      <div className="page-content">{children}</div>
-    </Root>
+    <AnimatePresence>
+      <Root className={'root'} hotspot={hotspot} color={coverColor} fullWidth={fullWidth}>
+        {coverPhoto && coverPhoto.asset && (
+          <motion.div
+            className={'mainImage'}
+            key={`header-${location.pathname}`}
+            {...animateFromTop}
+          >
+            <Figure maxWidth={1920} node={coverPhoto} noCaption className="img-container" />
+          </motion.div>
+        )}
+        {!coverPhoto && <div className={'mainImage'}></div>}
+        <motion.div
+          className="page-content"
+          key={`content-${location.pathname}`}
+          {...animateFromSide}
+        >
+          {children}
+        </motion.div>
+      </Root>
+    </AnimatePresence>
   );
 };
 

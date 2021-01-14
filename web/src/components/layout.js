@@ -29,55 +29,59 @@ const Layout = ({
       }
     }
   `);
+
   return (
-    <PageBody backgroundColor={backgroundColor}>
-      <GlobalStyle />
-      <div className={className}>
-        {showBackgroundImage && (
-          <HeaderImage
-            siteHeaderImages={siteHeaderImages}
-            currentHeaderImage={currentHeaderImage}
+    <LayoutRootContainer>
+      <PageBody backgroundColor={backgroundColor}>
+        <GlobalStyle />
+        <div className={className}>
+          {showBackgroundImage && (
+            <HeaderImage
+              siteHeaderImages={siteHeaderImages}
+              currentHeaderImage={currentHeaderImage}
+              // location={location}
+            />
+          )}
+          <Header
+            siteTitle={siteTitle}
+            onHideNav={onHideNav}
+            onShowNav={onShowNav}
+            showNav={showNav}
+            {...otherProps}
           />
-        )}
-        <Header
-          siteTitle={siteTitle}
-          onHideNav={onHideNav}
-          onShowNav={onShowNav}
-          showNav={showNav}
-          {...otherProps}
-        />
-        <div className="content">{children}</div>
-        <footer className="footer">
-          <div className="footer-wrapper">
-            <div className="site-info">&copy; Tsukimoon {new Date().getFullYear()}</div>
-            <div className="attribution only-large-screen">
-              Website built and designed by{' '}
-              <a className={'rahmenLink'} href="https://twitter.com/myrahmen">
-                instantRahmen
-              </a>
+          <div className="content">{children}</div>
+          <footer className="footer">
+            <div className="footer-wrapper">
+              <div className="site-info">&copy; Tsukimoon {new Date().getFullYear()}</div>
+              <div className="attribution only-large-screen">
+                Website built and designed by{' '}
+                <a className={'rahmenLink'} href="https://twitter.com/myrahmen">
+                  instantRahmen
+                </a>
+              </div>
+              {/* Social Media Links */}
+              <ul className="social-media-links">
+                {data.site.socialMediaLinks.map((link, index) => (
+                  <li key={`${link}-${index}`}>
+                    <SocialMediaLink includeIcon={false} url={link} includeName />
+                  </li>
+                ))}
+              </ul>
+              <div className="attribution only-small-screen">
+                Website built and designed by{' '}
+                <a className={'rahmenLink'} href="https://twitter.com/myrahmen">
+                  instantRahmen
+                </a>
+              </div>
             </div>
-            {/* Social Media Links */}
-            <ul className="social-media-links">
-              {data.site.socialMediaLinks.map((link, index) => (
-                <li key={`${link}-${index}`}>
-                  <SocialMediaLink includeIcon={false} url={link} includeName />
-                </li>
-              ))}
-            </ul>
-            <div className="attribution only-small-screen">
-              Website built and designed by{' '}
-              <a className={'rahmenLink'} href="https://twitter.com/myrahmen">
-                instantRahmen
-              </a>
-            </div>
-          </div>
-        </footer>
-      </div>
-    </PageBody>
+          </footer>
+        </div>
+      </PageBody>
+    </LayoutRootContainer>
   );
 };
 
-const HeaderImage = ({ siteHeaderImages, currentHeaderImage }) => {
+const HeaderImage = ({ siteHeaderImages, currentHeaderImage, location }) => {
   return siteHeaderImages.map((currentImage, index) => (
     <Img
       key={`background-image-${siteHeaderImages[index].asset._id}`}
@@ -229,19 +233,24 @@ footer {
 }
 `;
 
-const PageBody = styled.div`
+const LayoutRootContainer = styled.div`
   background-color: ${({ backgroundColor = '#68bd5e' }) => backgroundColor};
   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23c3c3c3' fill-opacity='0.4' fill-rule='evenodd'%3E%3Ccircle cx='3' cy='3' r='3'/%3E%3Ccircle cx='13' cy='13' r='3'/%3E%3C/g%3E%3C/svg%3E");
   background-blend-mode: multiply;
   min-height: 100vh;
   z-index: -100;
 `;
+
+const PageBody = styled.div`
+  background: none;
+`;
+
 export default styled(Layout)`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
   position: relative;
+
   .content {
     background: rgb(0, 0, 0);
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.3) 50%);

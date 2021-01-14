@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { wrap } from '@popmotion/popcorn';
 // import ArrowLeft from 'react-icons/lib/fa/arrow-left';
@@ -10,22 +10,38 @@ import PortableText from './portableText';
 import Figure from './Figure';
 import Carousel from './carousel';
 
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
+const getDirection = (current = 0, prev = 0) => {
+  const diff = current - prev;
+
+  if (diff < 0) return -1;
+  if (diff > 0) return 1;
+  return 0;
+};
+
 const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, setSlide }) => {
+  const lastSlide = usePrevious(currentSlide);
+  const [currentSlideUnwrapped, setCurrentSlideUnwrapped] = useState(0);
+
   const nextSlide = (direction = 1) => {
     setSlide(cur => {
       const newSlide = cur + direction;
       const newSlideWrapped = wrap(0, slides.length, newSlide);
-      console.log({ currentSlide: cur, newSlideWrapped, newSlide });
+      setCurrentSlideUnwrapped(val => newSlide);
 
       return newSlideWrapped;
     });
   };
-  console.log({ slides });
 
   useEffect(() => {
     const keypressListener = window.addEventListener('keyup', e => {
-      console.log({ keypress: e.key });
-
       if (e.key == 'Escape') {
         setOpen(false);
       }
@@ -52,9 +68,9 @@ const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, 
       {open && (
         <SlideshowContainer>
           <motion.div
-            initial={{ top: 1000 }}
-            animate={{ top: 0 }}
-            exit={{ top: 1000 }}
+            initial={{ y: '100vh' }}
+            animate={{ y: 0 }}
+            exit={{ y: '100vh' }}
             transition={spring}
             className="overlay"
           >
@@ -77,9 +93,14 @@ const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, 
                   node={slides[currentSlide]}
                   // noCaption
                   className="img-container"
-                  initial={{ left: 1000 }}
-                  animate={{ left: 0 }}
-                  exit={{ left: -1000 }}
+                  initial={{ x: 1000 * getDirection(currentSlideUnwrapped, lastSlide) }}
+                  animate={{ x: 0 }}
+                  exit={{ x: -1000 * getDirection(currentSlideUnwrapped, lastSlide) }}
+                  transition={{
+                    type: 'spring',
+                    duration: 1
+                  }}
+                  key={`slide-${currentSlide}`}
                 />
               </div>
               <button className="control next" onClick={() => nextSlide(1)}>
@@ -169,6 +190,7 @@ const SlideshowContainer = styled.div`
     position: relative;
     height: 75vh;
     z-index: 110;
+    overflow: hidden;
 
     .image {
       flex: 1;
