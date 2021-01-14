@@ -5,6 +5,7 @@
   "author": "instantRahmen",
   "scripts": {
     "build": "npx gatsby build",
+    "build-local": "gatsby build",
     "clean-cache": "gatsby clean",
     "dev": "yarn run clean-cache && yarn develop",
     "develop": "GATSBY_GRAPHQL_IDE=playground gatsby develop",
