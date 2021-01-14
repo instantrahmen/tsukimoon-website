@@ -44,7 +44,7 @@ const StaticPageTemplate = props => {
         </Container>
       )}
 
-      {page && <StaticPage {...page} />}
+      {page && <StaticPage {...props} {...page} />}
     </Layout>
     // </Container>
   );

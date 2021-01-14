@@ -3,7 +3,8 @@ import React from 'react';
 import { useLocation } from '@reach/router';
 
 const LinkWithState = ({ state = {}, ...props }) => {
-  const location = typeof useLocation === 'function' ? useLocation() : { pathname: '/', state: {} };
+  // const location = typeof useLocation === 'function' ? useLocation() : { pathname: '/', state: {} };
+  const location = useLocation();
 
   return (
     <>

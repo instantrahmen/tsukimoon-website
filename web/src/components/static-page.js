@@ -11,7 +11,7 @@ import Figure from './Figure';
 const StaticPage = ({ className, ...props }) => {
   const { _rawBody, title, mainImage } = props;
   return (
-    <Container coverPhoto={mainImage}>
+    <Container coverPhoto={mainImage} {...props}>
       <article className={className}>
         <div className={'mainContent'}>{_rawBody && <PortableText blocks={_rawBody} />}</div>
       </article>

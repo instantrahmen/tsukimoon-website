@@ -35,8 +35,8 @@ const Container = ({
   coverPhotoHeight = 400,
   fullWidth = false
 }) => {
-  // const location = useLocation();
-  const location = typeof useLocation === 'function' ? useLocation() : { pathname: '/', state: {} };
+  const location = useLocation();
+  // const location = typeof useLocation === 'function' ? useLocation() : { pathname: '/', state: {} };
   const pageOrder = ['/', '/about-tsuki', '/family', '/gallery', '/contact'];
 
   const currentPage = location.pathname;
