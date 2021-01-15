@@ -26,17 +26,20 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Badge - Building
+        uses: schneegans/dynamic-badges-action@v1.0.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 19c87ce1f1083bf152221bdac86f1c7c
+          filename: tsukimoon-status-badge.json
+          label: Status
+          message: building...
+          color: orange
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-      
-      - name: Status Badge - setting up
-        uses: RubbaBoy/BYOB@v1.2.0
-        with:
-          NAME: status
-          LABEL: 'Status'
-          STATUS: 'setting up'
-          COLOR: ffaa00
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
         
       # Set up node
       - name: Setup Node.js environment
@@ -65,21 +68,24 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       
-      - name: Status Badge - success
-        uses: RubbaBoy/BYOB@v1.2.0
+
+      - name: Badge - success
+        uses: schneegans/dynamic-badges-action@v1.0.0
         with:
-          NAME: status
-          LABEL: 'Status'
-          STATUS: 'success'
-          COLOR: 00ee00
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 19c87ce1f1083bf152221bdac86f1c7c
+          filename: tsukimoon-status-badge.json
+          label: Status
+          message: success
+          color: green
           
-      - name: Status Badge - error
+      - name: Badge - faulure
         if: failure()
-        uses: RubbaBoy/BYOB@v1.2.0
+        uses: schneegans/dynamic-badges-action@v1.0.0
         with:
-          NAME: status
-          LABEL: 'Status'
-          STATUS: 'error'
-          COLOR: ee0000
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: 19c87ce1f1083bf152221bdac86f1c7c
+          filename: tsukimoon-status-badge.json
+          label: Status
+          message: failed
+          color: red
