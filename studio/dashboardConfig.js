@@ -12,23 +12,18 @@ export default {
       options: {
         __experimental_before: [
           {
-            name: 'netlify',
+            name: 'github-actions',
             options: {
-              description:
-                'NOTE: Because this site is static, it needs to be re-deployed to see the changes when anything is published. To deploy, just click the "Deploy" button below whenever you make changes. Also you are a cutie! 💙',
+              title: 'Deploy Live Site',
               sites: [
                 {
-                  buildHookId: '5de4834034b0fddef2cc9b2d',
                   title: 'tsukimoon.net',
-                  name: 'tsukimoon-website',
-                  apiId: '3d897f26-88f6-458a-a282-d40e929e6b2f'
+                  githubRepo: 'tsukimoon-website',
+                  githubRepoOwner: 'instantrahmen',
+                  githubToken: 'f1dd835edb486d1f5702bb72e9597026e1a88d20',
+                  eventType: 'build-and-deploy',
+                  url: 'https://www.tsukimoon.net'
                 }
-                // {
-                //   buildHookId: '5de4834063eafd14dcc632e3',
-                //   title: 'Sanity Studio',
-                //   name: 'tsukimoon-website-studio',
-                //   apiId: '9197e972-7092-41ae-aff1-254206051369'
-                // }
               ]
             }
           }

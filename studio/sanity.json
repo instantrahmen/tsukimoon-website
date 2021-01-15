@@ -17,6 +17,7 @@
     "dashboard-widget-structure-menu",
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
+    "@jacdx/sanity-plugin-dashboard-widget-github-actions",
     "@sanity/color-input"
   ],
   "parts": [
