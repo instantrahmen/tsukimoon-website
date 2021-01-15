@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { wrap } from '@popmotion/popcorn';
-// import ArrowLeft from 'react-icons/lib/fa/arrow-left';
-// import ArrowRight from 'react-icons/lib/fa/arrow-right';
 import { AiFillCaretLeft as ArrowLeft, AiFillCaretRight as ArrowRight } from 'react-icons/ai';
 import { AnimatePresence, motion } from 'framer-motion';
 

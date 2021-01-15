@@ -1,12 +1,14 @@
 import React from 'react';
-import GithubIcon from 'react-icons/lib/fa/github';
-import FacebookIcon from 'react-icons/lib/fa/facebook-official';
-import TwitterIcon from 'react-icons/lib/fa/twitter';
-import TwitchIcon from 'react-icons/lib/fa/twitch';
-import YoutubeIcon from 'react-icons/lib/fa/youtube';
-import DAIcon from 'react-icons/lib/fa/deviantart';
-import LinkIcon from 'react-icons/lib/fa/external-link-square';
 import styled from 'styled-components';
+import {
+  FaTwitch,
+  FaTwitter,
+  FaYoutube,
+  FaGithub,
+  FaFacebook,
+  FaDeviantart,
+  FaExternalLinkSquareAlt
+} from 'react-icons/fa';
 
 const SocialMediaLink = ({ url, includeName = false, includeIcon = true, ...props }) => {
   const finalUrl = url.startsWith('http') ? url : `https://${url}`;
@@ -32,13 +34,13 @@ export const extractWebsiteName = url => {
 };
 
 export const SocialMediaIcon = ({ websiteName, ...props }) => {
-  if (websiteName === 'twitter') return <TwitterIcon {...props} />;
-  if (websiteName === 'facebook') return <FacebookIcon {...props} />;
-  if (websiteName === 'twitch') return <TwitchIcon {...props} />;
-  if (websiteName === 'youtube') return <YoutubeIcon {...props} />;
-  if (websiteName === 'github') return <GithubIcon {...props} />;
-  if (websiteName === 'deviantart') return <DAIcon {...props} />;
-  return <LinkIcon {...props} />;
+  if (websiteName === 'twitter') return <FaTwitter {...props} />;
+  if (websiteName === 'facebook') return <FaFacebook {...props} />;
+  if (websiteName === 'twitch') return <FaTwitch {...props} />;
+  if (websiteName === 'youtube') return <FaYoutube {...props} />;
+  if (websiteName === 'github') return <FaGithub {...props} />;
+  if (websiteName === 'deviantart') return <FaDeviantart {...props} />;
+  return <FaExternalLinkSquareAlt {...props} />;
 };
 
 export default styled(SocialMediaLink)`
