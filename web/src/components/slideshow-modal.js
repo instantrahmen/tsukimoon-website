@@ -27,6 +27,7 @@ const getDirection = (current = 0, prev = 0) => {
 const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, setSlide }) => {
   const lastSlide = usePrevious(currentSlide);
   const [currentSlideUnwrapped, setCurrentSlideUnwrapped] = useState(0);
+  const [keypressTotal, setKeypressTotal] = useState(0);
 
   const nextSlide = (direction = 1) => {
     setSlide(cur => {
@@ -40,6 +41,8 @@ const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, 
 
   useEffect(() => {
     const keypressListener = window.addEventListener('keyup', e => {
+      setKeypressTotal(val => val + 1);
+
       if (e.key == 'Escape') {
         setOpen(false);
       }
@@ -86,20 +89,26 @@ const SlideshowModal = ({ open = false, setOpen, slides = [], currentSlide = 0, 
                   {currentSlide + 1} / {slides.length}
                 </div>
 
-                <Figure
-                  maxWidth={1920}
-                  node={slides[currentSlide]}
-                  // noCaption
-                  className="img-container"
-                  initial={{ x: 1000 * getDirection(currentSlideUnwrapped, lastSlide) }}
-                  animate={{ x: 0 }}
-                  exit={{ x: -1000 * getDirection(currentSlideUnwrapped, lastSlide) }}
-                  transition={{
-                    type: 'spring',
-                    duration: 1
-                  }}
-                  key={`slide-${currentSlide}`}
-                />
+                <AnimatePresence initial={false}>
+                  <Figure
+                    maxWidth={1920}
+                    node={slides[currentSlide]}
+                    // noCaption
+                    className="img-container"
+                    initial={{ x: 1000 * getDirection(currentSlideUnwrapped, lastSlide) }}
+                    animate={{ x: 0 }}
+                    exit={{
+                      opacity: 0,
+                      x: -1000 * getDirection(currentSlideUnwrapped, lastSlide),
+                      zIndex: -10
+                    }}
+                    transition={{
+                      type: 'spring',
+                      duration: 1
+                    }}
+                    key={`slide-${currentSlide}-${keypressTotal}`}
+                  />
+                </AnimatePresence>
               </div>
               <button className="control next" onClick={() => nextSlide(1)}>
                 <ArrowRight></ArrowRight>
@@ -202,7 +211,7 @@ const SlideshowContainer = styled.div`
       position: relative;
 
       .info {
-        background: #111c;
+        background: #222;
         border: 1px solid #565656;
         color: white;
         padding: 0.5rem;
@@ -250,6 +259,12 @@ const SlideshowContainer = styled.div`
         flex-direction: column;
         text-align: center;
         flex: 1;
+        /* position: absolute; */
+      }
+
+      figure {
+        position: absolute;
+        background: #222;
       }
     }
   }

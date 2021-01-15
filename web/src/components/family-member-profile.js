@@ -64,7 +64,11 @@ const FamilyMemberProfile = ({ className, familyMember }) => {
               <ul className="featured-photos">
                 {familyMember.featuredPhotos &&
                   familyMember.featuredPhotos.map((photo, i) => (
-                    <li role="button" onClick={() => openPhoto(i)} key={JSON.stringify(photo)}>
+                    <li
+                      role="button"
+                      onClick={() => openPhoto(i)}
+                      key={`${JSON.stringify(photo)}-${i}`}
+                    >
                       <Figure node={photo} maxWidth={200} />
                     </li>
                   ))}
@@ -99,6 +103,7 @@ export default styled(FamilyMemberProfile)`
     border-radius: 20px;
     margin-bottom: 2rem;
     padding: 1rem .5rem 2rem .5rem;
+    text-align: center;
 
     h1, h2, h3, h4 {
       padding-top: 0;
@@ -155,7 +160,7 @@ export default styled(FamilyMemberProfile)`
       width: 300px;
       max-width: 100vw;
       padding: 3rem 1rem;
-      text-align: center;
+      /* text-align: center; */
     }
 
     @media (max-width: 904px) {
@@ -172,27 +177,44 @@ export default styled(FamilyMemberProfile)`
   .social-media-links {
     margin: 0 auto;
     padding: 0;
-    width: 100%;
+    /* width: 100%; */
     position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: .5rem;
+    font-size: 1.2rem !important;
+    text-align: left;
+    list-style: none;
+
+    svg {
+      width: 1.1em;
+      height: 1.1em;
+      vertical-align: text-bottom;
+      margin-bottom: 2px;
+    }
 
     li {
-      display: block;
       width: 100%;
     }
 
     a {
+      padding: .3rem;
       text-decoration: none;
       color: #333;
-      font-size: 1.4rem;
       width: 100%;
-      text-align: center;
-      display: flex;
-      justify-content: center;
       transition: 100ms ease-in;
-
+      box-sizing: border-box;
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid rgba(0, 0, 0, 0);
+      transition: 100ms ease-out;
+      
       &:hover {
         color: ${({ familyMember }) => getReadableColor(familyMember.color.hex)};
-        background: #ececec;
+        background: #fafafa;
+        border: 1px solid ${({ familyMember }) => getReadableColor(familyMember.color.hex)};;
 
       }
     }
@@ -204,13 +226,14 @@ export default styled(FamilyMemberProfile)`
     padding: 0;
     list-style: none;
     grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+
     & > li {
       margin: 0;
       padding: 0;
       width: 100%;
       height: 80px;
       position: relative;
-      background: black;
+      /* background: black; */
       
     }
 
@@ -219,17 +242,25 @@ export default styled(FamilyMemberProfile)`
       height: 100%;
       margin: 0;
       padding: 0;
-      opacity: 0.95;
-      transition: 100ms ease-in;
+      /* opacity: 0.95; */
+      /* transition: 100ms ease-in; */
+      z-index: 50;
+      filter: blur(.25px)  brightness(90%);
+
+      * {
+        box-sizing: border-box;
+      }
       &:hover {
-        opacity: 1;
-        margin: 0
+        /* opacity: 1; */
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        z-index: 100;
+        filter: blur(0px)  brightness(105%);
+
       }
     }
 
     img {
       object-fit: cover;
-
     }
 
     /* img,

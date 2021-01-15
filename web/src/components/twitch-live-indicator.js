@@ -1,7 +1,8 @@
 import React, { useLayoutEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import TwitchIcon from 'react-icons/lib/fa/twitch';
+// import TwitchIcon from 'react-icons/lib/fa/twitch';
+import { FaTwitch as TwitchIcon } from 'react-icons/fa';
 import { darken } from 'polished';
 
 const TWITCH_CLIENT_ID = 'q0y3x6qxa9ybr6yabgcwxk7iturpi4';
