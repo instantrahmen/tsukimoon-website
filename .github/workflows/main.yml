@@ -43,7 +43,7 @@ jobs:
       - name: Deploy to Netlify
         uses: nwtgck/actions-netlify@v1.1.11
         with:
-          publish-dir: /web/public
+          publish-dir: web/public
           production-branch: master
           deploy-message: Publish from Github
         env: 
