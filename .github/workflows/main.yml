@@ -29,15 +29,14 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       
-      - name: Setup badges dir
-        run: |
-          mkdir -p .github/badges
-      - uses: emibcn/badge-action@v1
+      - name: Status Badge - setting up
+        uses: RubbaBoy/BYOB@v1.2.0
         with:
-          label: 'status'
-          status: 'building'
-          color: 'blue'
-          path: '.github/badges/status.svg'
+          NAME: status
+          LABEL: 'Status'
+          STATUS: 'setting up'
+          COLOR: 00EEFF
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
       # Set up node
       - name: Setup Node.js environment
@@ -66,17 +65,34 @@ jobs:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
       
-      - uses: emibcn/badge-action@v1
-        if: failure()
+      - name: Status Badge - success
+        uses: RubbaBoy/BYOB@v1.2.0
         with:
-          label: 'status'
-          status: 'failed'
-          color: 'red'
-          path: '.github/badges/status.svg'
-      - uses: emibcn/badge-action@v1
-        if: success()
+          NAME: status
+          LABEL: 'Status'
+          STATUS: 'success'
+          COLOR: 00ee00
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Status Badge - error
+        uses: RubbaBoy/BYOB@v1.2.0
         with:
-          label: 'status'
-          status: 'failed'
-          color: 'red'
-          path: '.github/badges/status.svg'
+          NAME: status
+          LABEL: 'Status'
+          STATUS: 'error'
+          COLOR: ee0000
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#       - uses: emibcn/badge-action@v1
+#         if: failure()
+#         with:
+#           label: 'status'
+#           status: 'failed'
+#           color: 'red'
+#           path: '.github/badges/status.svg'
+#       - uses: emibcn/badge-action@v1
+#         if: success()
+#         with:
+#           label: 'status'
+#           status: 'failed'
+#           color: 'red'
+#           path: '.github/badges/status.svg'
