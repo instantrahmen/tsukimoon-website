@@ -35,7 +35,7 @@ jobs:
           NAME: status
           LABEL: 'Status'
           STATUS: 'setting up'
-          COLOR: 00EEFF
+          COLOR: ffaa00
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
       # Set up node
@@ -75,6 +75,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Status Badge - error
+        if: failure()
         uses: RubbaBoy/BYOB@v1.2.0
         with:
           NAME: status
@@ -82,17 +83,3 @@ jobs:
           STATUS: 'error'
           COLOR: ee0000
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       - uses: emibcn/badge-action@v1
-#         if: failure()
-#         with:
-#           label: 'status'
-#           status: 'failed'
-#           color: 'red'
-#           path: '.github/badges/status.svg'
-#       - uses: emibcn/badge-action@v1
-#         if: success()
-#         with:
-#           label: 'status'
-#           status: 'failed'
-#           color: 'red'
-#           path: '.github/badges/status.svg'
