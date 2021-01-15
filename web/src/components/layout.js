@@ -56,7 +56,7 @@ const Layout = ({
               <div className="attribution only-large-screen">
                 Website built and designed by{' '}
                 <a className={'rahmenLink'} href="https://twitter.com/myrahmen">
-                  instantRahmen
+                  instantRahmen 💙
                 </a>
               </div>
               {/* Social Media Links */}
